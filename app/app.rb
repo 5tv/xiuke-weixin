@@ -64,5 +64,41 @@ module Weixin2
     #     render 'errors/505'
     #   end
     #
+    helpers do
+      def msg_router(msg)
+        case msg.MsgType
+        when 'text'
+          # text message handler
+        when 'image'
+          # image message handler
+        when 'location'
+          # location message handler
+        when 'link'
+          # link message handler
+        when 'event'
+          # event messge handler
+        when 'voice'
+          # voice message handler
+        when 'video'
+          # video message handler
+        else
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知消息类型')
+        end
+      end
+    end
+
+    get "/" do
+        params[:echostr]
+    end
+
+    post '/' do
+        content_type :xml, 'charset' => 'utf-8'
+
+        message = request.env[Weixin::Middleware::WEIXIN_MSG]
+        logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
+
+        # handle the message according to your business logic
+        msg_router(message) unless message.nil?
+    end
   end
 end
