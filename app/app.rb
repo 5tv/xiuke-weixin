@@ -4,9 +4,9 @@ module Weixin2
     register Padrino::Helpers
 
     enable :sessions
-    use Weixin::Middleware, 'xiukeshibukezhanshengde', '/weixinapi' 
+    use Weixin::Middleware, 'xiukeshibukezhanshengde', '/app' 
     configure do
-          set :wx_id, 'wx09a8a54a7050bdf0'
+          set :wx_id, 'gh_105842a55763'
     end
     ##
     # Caching support.
