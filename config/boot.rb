@@ -8,10 +8,10 @@ require 'bundler/setup'
 require 'json'
 require 'rack-weixin'
 Bundler.require(:default, RACK_ENV)
-
+WX_ACCOUNT = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/weixin_account.yml')[RACK_ENV]
 MENU = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/menu_config.yml')[RACK_ENV]
 #app id and secret
-Weixin::Menu.new('wx1532dfc6d2da9dcf','93ed294ed4b3dd8979683d710926e5fb').add(MENU)
+Weixin::Menu.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret']).add(MENU)
 ##
 # ## Enable devel logging
 #
