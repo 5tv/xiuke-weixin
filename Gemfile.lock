@@ -101,6 +101,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json
   padrino (= 0.12.2)
   rack-weixin
   rake

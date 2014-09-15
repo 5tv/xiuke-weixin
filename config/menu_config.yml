@@ -1,0 +1,34 @@
+development: &default
+  buttons:
+    -
+      type: click
+      name: 系列
+      key: serie
+    -
+      type: click
+      name: 随便看看
+      key: lookingaround
+    -
+      name: 更多
+      sub_button:
+        -
+          type: click
+          name: 关于
+          key: about
+        -
+          type: view
+          name: 绑定
+          url: "http://5tv.com/bind"
+        -
+          type: view
+          name: 建议
+          url: "http://5tv.com/suggestion"
+        -
+          type: view
+          name: 我的试片
+          url: "http://5tv.com/myfilm"
+test: 
+  <<: *default
+
+production:
+  <<: *default

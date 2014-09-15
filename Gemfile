@@ -15,7 +15,7 @@ gem 'rake'
 gem 'unicorn'
 # Component requirements
 gem 'slim'
-
+gem 'json'
 # Test requirements
 
 # Padrino Stable Gem
