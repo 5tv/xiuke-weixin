@@ -12,7 +12,7 @@ source 'https://rubygems.org'
 
 # Project requirements
 gem 'rake'
-
+gem 'unicorn'
 # Component requirements
 gem 'slim'
 

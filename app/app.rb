@@ -88,7 +88,7 @@ module Weixin2
     end
 
     get "/" do
-        params[:echostr]
+	params[:echostr]
     end
 
     post '/' do
