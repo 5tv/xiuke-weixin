@@ -5,8 +5,13 @@ PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 # Load our dependencies
 require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
+require 'json'
+require 'rack-weixin'
 Bundler.require(:default, RACK_ENV)
 
+MENU = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/menu_config.yml')[RACK_ENV]
+#app id and secret
+Weixin::Menu.new('wx1532dfc6d2da9dcf','93ed294ed4b3dd8979683d710926e5fb').add(MENU)
 ##
 # ## Enable devel logging
 #
