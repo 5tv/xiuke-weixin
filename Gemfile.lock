@@ -1,3 +1,15 @@
+GIT
+  remote: git://github.com/wolfg1969/rack-weixin.git
+  revision: a0e24e4fe8ce498b7d2c6be3f7218f30029f19a7
+  ref: a0e24e4fe8ce498b7d2c6be3f7218f30029f19a7
+  specs:
+    rack-weixin (0.0.4.3)
+      multi_json (>= 1.7.9)
+      multi_xml (>= 0.5.2)
+      nestful
+      rack
+      roxml
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,12 +75,6 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
-    rack-weixin (0.0.4.3)
-      multi_json (>= 1.7.9)
-      multi_xml (>= 0.5.2)
-      nestful
-      rack
-      roxml
     raindrops (0.13.0)
     rake (10.3.2)
     roxml (3.3.1)
@@ -103,7 +109,7 @@ PLATFORMS
 DEPENDENCIES
   json
   padrino (= 0.12.2)
-  rack-weixin
+  rack-weixin!
   rake
   slim
   unicorn
