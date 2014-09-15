@@ -27,5 +27,5 @@ gem 'padrino', '0.12.2'
 # Or Individual Gems
 # %w(core support gen helpers cache mailer admin).each do |g|
 #   gem 'padrino-' + g, '0.12.2'
-gem 'rack-weixin'
+gem 'rack-weixin', :git =>'git://github.com/wolfg1969/rack-weixin.git' , :ref => 'a0e24e4fe8ce498b7d2c6be3f7218f30029f19a7'
 # end
