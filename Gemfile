@@ -16,6 +16,7 @@ gem 'unicorn'
 # Component requirements
 gem 'slim'
 gem 'json'
+gem 'rest-client'
 # Test requirements
 
 # Padrino Stable Gem

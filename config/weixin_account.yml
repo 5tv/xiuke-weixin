@@ -3,6 +3,7 @@ development: &default
   appsecret: 93ed294ed4b3dd8979683d710926e5fb
   token: xiukeshibukezhanshengde
   wx_account_id: gh_4c161956300a
+  test_open_id: ou3rnjq7Tx-Nvii_XhUINYhCISYo
 test: 
   <<: *default
 
