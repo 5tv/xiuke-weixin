@@ -77,6 +77,42 @@ module Weixin2
           # link message handler
         when 'event'
           # event messge handler
+          case msg.Event
+          when 'subscribe'
+            welcome = '欢迎您关注秀客网官方微信服务号，点击‘系列’立即观看5tv最新制作的系列 点击‘随便看看’立即观看精彩短视频。精彩内容尽在秀客。'
+            Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
+          when 'unsubscribe'
+            waiting_you_subscribe_next = '你一定会回来的'
+            Weixin.text_msg(msg.ToUserName, msg.FromUserName, waiting_you_subscribe_next)
+          when 'CLICK'
+            case msg.EventKey
+            when 'serie'
+                serie_string = RestClient.get('http://5tv.com/api/v3/series')
+                serie_hash = JSON.parse(serie_string)
+                serie = OpenStruct.new(serie_hash)
+                items = serie.series.map do |s|
+                    s_open = OpenStruct.new(s)
+                    title = s.title
+                    desc = s.description
+                    cover = m.cover
+                    link_url = "http://5tv.com/series/show?id=#{m.id}"
+                    Weixin.item(title, desc, cover, link_url)
+                end
+                Weixin.news_msg(msg.ToUserName, msg.FromUserName, items)
+            when 'lookingaround'
+                Weixin.text_msg(msg.ToUserName, msg.FromUserName, '即将发布')
+            when 'about'
+                about = '客户服务\n邮箱：feedback@xiuke.tv\n\n商务合作\n邮箱：contact@xiuke.tv\n\n企业合作\n邮箱：yanglicong@xiuke.tv\n\n秀客微博：@秀客微节目\n秀客微信：秀客短视频（xiuke-tv)'
+                Weixin.text_msg(msg.ToUserName, msg.FromUserName, about)
+            else
+                Weixin.text_msg(msg.ToUserName, msg.FromUserName, ' ')    
+            end
+          when 'VIEW'
+          when 'LOCATION'
+            Weixin.text_msg(msg.ToUserName, msg.FromUserName, ' ')           
+          else 
+            Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
+          end
         when 'voice'
           # voice message handler
         when 'video'
