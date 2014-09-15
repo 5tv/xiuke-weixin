@@ -92,10 +92,10 @@ module Weixin2
                 serie = OpenStruct.new(serie_hash)
                 items = serie.series.map do |s|
                     s_open = OpenStruct.new(s)
-                    title = s.title
-                    desc = s.description
-                    cover = m.cover
-                    link_url = "http://5tv.com/series/show?id=#{m.id}"
+                    title = s_open.title
+                    desc = s_open.description
+                    cover = s_open.cover
+                    link_url = "http://5tv.com/series/show?id=#{s_open.id}"
                     Weixin.item(title, desc, cover, link_url)
                 end
                 Weixin.news_msg(msg.ToUserName, msg.FromUserName, items)
