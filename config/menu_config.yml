@@ -1,5 +1,5 @@
 development: &default
-  buttons:
+  button:
     -
       type: click
       name: 系列
