@@ -134,8 +134,8 @@ module Weixin2
         logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
 
         # handle the message according to your business logic
-        msg_router(message) unless message.nil?
-	render xml: new_message
+	new_message =  msg_router(message) unless message.nil?
+	new_message
     end
   end
 end
