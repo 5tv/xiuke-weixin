@@ -4,7 +4,7 @@ module Weixin2
     register Padrino::Helpers
 
     enable :sessions
-    use Weixin::Middleware, WX_ACCOUNT['token'], '/app' 
+    use Weixin::Middleware, WX_ACCOUNT['token'], '/' 
     configure do
           set :wx_id, WX_ACCOUNT['wx_account_id']
     end
@@ -130,15 +130,20 @@ module Weixin2
 
         post '/' do
             content_type :xml, 'charset' => 'utf-8'
-
+            p "1111112323232323"
+            p params
+            p request
+            p Weixin::Middleware::WEIXIN_MSG
             message = request.env[Weixin::Middleware::WEIXIN_MSG]
+            p message
             logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
 
             # handle the message according to your business logic
             new_message = msg_router(message) unless message.nil?
+            p new_message
             new_message
         end
     end
-    
+
   end
 end
