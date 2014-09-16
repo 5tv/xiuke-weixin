@@ -123,18 +123,22 @@ module Weixin2
       end
     end
 
-    get "/" do
-        params[:echostr]
+    controllers do 
+        get "/" do
+            params[:echostr]
+        end
+
+        post '/' do
+            content_type :xml, 'charset' => 'utf-8'
+
+            message = request.env[Weixin::Middleware::WEIXIN_MSG]
+            logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
+
+            # handle the message according to your business logic
+            new_message = msg_router(message) unless message.nil?
+            new_message
+        end
     end
-
-    post '/' do
-        content_type :xml, 'charset' => 'utf-8'
-
-        message = request.env[Weixin::Middleware::WEIXIN_MSG]
-        logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
-
-        # handle the message according to your business logic
-        msg_router(message) unless message.nil?
-    end
+    
   end
 end
