@@ -123,19 +123,22 @@ module Weixin2
       end
     end
 
-    get "/" do
-	params[:echostr]
+    controllers do 
+        get "/" do
+            params[:echostr]
+        end
+
+        post '/' do
+            content_type :xml, 'charset' => 'utf-8'
+
+            message = request.env[Weixin::Middleware::WEIXIN_MSG]
+            logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
+
+            # handle the message according to your business logic
+            new_message = msg_router(message) unless message.nil?
+            new_message
+        end
     end
-
-    post '/' do
-        content_type :xml, 'charset' => 'utf-8'
-
-        message = request.env[Weixin::Middleware::WEIXIN_MSG]
-        logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
-
-        # handle the message according to your business logic
-	new_message =  msg_router(message) unless message.nil?
-	"<xml><ArticleCount>3</ArticleCount><Articles><item><Title><![CDATA[主物记]]></Title><Description><![CDATA[人的一生中，总会经历不同的事件，产生不同的情绪，形成强烈的意志。当我们的意志倾注在某一件物品时，它就会慢慢被物品吸收，产生强大的能量。带有意志的物品会影响拥有它的每一个人。这其中也可能包扣你！]]></Description><PicUrl><![CDATA[http://picxiuke.qiniudn.com/uploads%2Fserie%2Fcover%2F86%2F397e92ade8279c5d66e8eff9a7e2a992.jpg]]></PicUrl><Url><![CDATA[http://5tv.com/series/show?id=86]]></Url></item><item><Title><![CDATA[装B攻略]]></Title><Description><![CDATA[鬼马Mike隋携尹菲江峰爆笑来袭，无论是哪种装B，都能在剧集中找到合适的对象。不信？看看，你就知道了。]]></Description><PicUrl><![CDATA[http://picxiuke.qiniudn.com/uploads%2Fserie%2Fcover%2F84%2Fe80cdc04928845fb0aece6a169333351.jpg]]></PicUrl><Url><![CDATA[http://5tv.com/series/show?id=84]]></Url></item><item><Title><![CDATA[哇塞，真的假的！]]></Title><Description><![CDATA[毒舌、无节操、非主流？每期邀请明星嘉宾与四位主持人带你一同走进他们的生活，分享所见所闻，共同探讨潮流尖端的热点话题。]]></Description><PicUrl><![CDATA[http://picxiuke.qiniudn.com/uploads%2Fserie%2Fcover%2F83%2Fd2a0a7b6de23495f918dc6066f752330.jpg]]></PicUrl><Url><![CDATA[http://5tv.com/series/show?id=83]]></Url></item></Articles><ToUserName><![CDATA[ou3rnjq7Tx-Nvii_XhUINYhCISYo]]></ToUserName><FromUserName><![CDATA[gh_4c161956300a]]></FromUserName><CreateTime>1410837985</CreateTime><MsgType><![CDATA[news]]></MsgType></xml>" 
-    end
+    
   end
 end
