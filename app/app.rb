@@ -135,6 +135,7 @@ module Weixin2
 
         # handle the message according to your business logic
         msg_router(message) unless message.nil?
+	render xml: new_message
     end
   end
 end
