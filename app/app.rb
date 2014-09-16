@@ -104,6 +104,24 @@ module Weixin2
             when 'about'
                 about = '客户服务\n邮箱：feedback@xiuke.tv\n\n商务合作\n邮箱：contact@xiuke.tv\n\n企业合作\n邮箱：yanglicong@xiuke.tv\n\n秀客微博：@秀客微节目\n秀客微信：秀客短视频（xiuke-tv)'
                 Weixin.text_msg(msg.ToUserName, msg.FromUserName, about)
+            when 'previews'
+                ## 需要补全url地址
+                videos_string = RestClient.get("?weixin_openid=#{msg.FromUserName}")
+                videos_hash = JSON.parse(videos_string)
+                if !videos_hash['message'].present?
+                    videos_array = videos_hash['videos']
+                    items = videos_array.map do |v|
+                        v_open = OpenStruct(v)
+                        title = v_open.title
+                        desc = v_open.description
+                        cover = v_open.cover
+                        link_url = v_open.url
+                        Weixin.item(title, desc, cover, link_url)
+                    end
+                    Weixin.news_msg(msg.ToUserName, msg.FromUserName, items)
+                else
+                    Weixin.text_msg(msg.ToUserName, msg.FromUserName, videos_hash['message'])
+                end
             else
                 Weixin.text_msg(msg.ToUserName, msg.FromUserName, ' ')    
             end
@@ -130,18 +148,18 @@ module Weixin2
 
         post '/' do
             content_type :xml, 'charset' => 'utf-8'
-            p "1111112323232323"
-            p params
-            p request
-            p Weixin::Middleware::WEIXIN_MSG
             message = request.env[Weixin::Middleware::WEIXIN_MSG]
-            p message
             logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
 
             # handle the message according to your business logic
             new_message = msg_router(message) unless message.nil?
-            p new_message
             new_message
+        end
+
+        get '/redirect' do
+            content_type :xml, 'charset' => 'utf-8'
+            message = request.env[Weixin::Middleware::WEIXIN_MSG]            
+            redirect "http://5tv.com/bind?weixin_openid=#{message.FromUserName}"
         end
     end
 
