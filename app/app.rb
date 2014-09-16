@@ -133,10 +133,11 @@ module Weixin2
 
             message = request.env[Weixin::Middleware::WEIXIN_MSG]
             logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
-
+	    p message
             # handle the message according to your business logic
             new_message = msg_router(message) unless message.nil?
-            new_message
+            p new_message
+	    new_message
         end
     end
     
