@@ -171,7 +171,7 @@ module Weixin2
             new_message
         end
 
-        get '/redirect' do
+        post '/redirect' do
             content_type :xml, 'charset' => 'utf-8'
             message = request.env[Weixin::Middleware::WEIXIN_MSG]            
             redirect "http://5tv.com/bind?weixin_openid=#{message.FromUserName}"
