@@ -86,6 +86,7 @@ module Weixin2
             Weixin.text_msg(msg.ToUserName, msg.FromUserName, waiting_you_subscribe_next)
           when 'CLICK'
             case msg.EventKey
+            #系列
             when 'serie'
                 serie_string = RestClient.get('http://5tv.com/api/v3/series')
                 serie_hash = JSON.parse(serie_string)
@@ -99,14 +100,28 @@ module Weixin2
                     Weixin.item(title, desc, cover, link_url)
                 end
                 Weixin.news_msg(msg.ToUserName, msg.FromUserName, items)
+            #随便看看
             when 'lookingaround'
-                Weixin.text_msg(msg.ToUserName, msg.FromUserName, '即将发布')
+                videos_string = RestClient.get("http://5tv.com/weixin/wx_lookingaround")
+                videos_hash = JSON.parse(videos_string)
+                videos_array = videos_hash['videos']
+                items = videos_array.map do |v|
+                    v_open = OpenStruct(v)
+                    title = v_open.title
+                    desc = v_open.description
+                    cover = v_open.cover
+                    link_url = v_open.url
+                    Weixin.item(title, desc, cover, link_url)
+                end
+                    Weixin.news_msg(msg.ToUserName, msg.FromUserName, items)
+            #更多--关于
             when 'about'
                 about = '客户服务\n邮箱：feedback@xiuke.tv\n\n商务合作\n邮箱：contact@xiuke.tv\n\n企业合作\n邮箱：yanglicong@xiuke.tv\n\n秀客微博：@秀客微节目\n秀客微信：秀客短视频（xiuke-tv)'
                 Weixin.text_msg(msg.ToUserName, msg.FromUserName, about)
+            #更多--我的试片
             when 'previews'
                 ## 需要补全url地址
-                videos_string = RestClient.get("?weixin_openid=#{msg.FromUserName}")
+                videos_string = RestClient.get("http://5tv.com/weixin/wx_mypreviews?weixin_openid=#{msg.FromUserName}")
                 videos_hash = JSON.parse(videos_string)
                 if !videos_hash['message'].present?
                     videos_array = videos_hash['videos']
@@ -160,6 +175,7 @@ module Weixin2
             content_type :xml, 'charset' => 'utf-8'
             message = request.env[Weixin::Middleware::WEIXIN_MSG]            
             redirect "http://5tv.com/bind?weixin_openid=#{message.FromUserName}"
+            # redirect "http://5tv.com/"
         end
     end
 
