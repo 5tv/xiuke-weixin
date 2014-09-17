@@ -18,15 +18,15 @@ development: &default
         -
           type: view
           name: 绑定
-          url: "http://5tv.com/bind"
+          url: "http://182.92.214.159/weixinapi/redirect"
         -
           type: view
           name: 建议
           url: "http://5tv.com/suggestion"
         -
-          type: view
+          type: click
           name: 我的试片
-          url: "http://5tv.com/myfilm"
+          key: previews
 test: 
   <<: *default
 
