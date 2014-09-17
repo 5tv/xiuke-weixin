@@ -106,7 +106,7 @@ module Weixin2
                 videos_hash = JSON.parse(videos_string)
                 videos_array = videos_hash['videos']
                 items = videos_array.map do |v|
-                    v_open = OpenStruct(v)
+                    v_open = OpenStruct.new(v)
                     title = v_open.title
                     desc = v_open.description
                     cover = v_open.cover
@@ -126,7 +126,7 @@ module Weixin2
                 if !videos_hash['message'].present?
                     videos_array = videos_hash['videos']
                     items = videos_array.map do |v|
-                        v_open = OpenStruct(v)
+                        v_open = OpenStruct.new(v)
                         title = v_open.title
                         desc = v_open.description
                         cover = v_open.cover
