@@ -8,4 +8,7 @@ test:
   <<: *default
 
 production:
-  <<: *default
+  appid: wx09a8a54a7050bdf0
+  appsecret: d643e367f0449fe8391254bd2e439070
+  token: xiukeshibukezhanshengde
+  wx_account_id: gh_105842a55763
