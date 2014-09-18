@@ -141,12 +141,6 @@ module Weixin2
                 Weixin.text_msg(msg.ToUserName, msg.FromUserName, ' ')    
             end
           when 'VIEW'
-            case msg.EventKey
-            when "http://182.92.214.159/weixinapi/redirect"
-                'redirect'
-            else
-                'others'
-            end
           when 'LOCATION'
             Weixin.text_msg(msg.ToUserName, msg.FromUserName, ' ')           
           else 
@@ -174,7 +168,7 @@ module Weixin2
 
             # handle the message according to your business logic
             new_message = msg_router(message) unless message.nil?
-            new_message == 'redirect' ? redirect "http://5tv.com/bind?weixin_openid=#{message.FromUserName}" : new_message
+            new_message
         end
 
         get '/redirect' do
