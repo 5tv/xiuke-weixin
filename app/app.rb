@@ -116,7 +116,7 @@ module Weixin2
                     Weixin.news_msg(msg.ToUserName, msg.FromUserName, items)
             #更多--关于
             when 'about'
-                about = '客户服务\n邮箱：feedback@xiuke.tv\n\n商务合作\n邮箱：contact@xiuke.tv\n\n企业合作\n邮箱：yanglicong@xiuke.tv\n\n秀客微博：@秀客微节目\n秀客微信：秀客短视频（xiuke-tv)'
+                about = "客户服务\n邮箱：feedback@xiuke.tv\n\n商务合作\n邮箱：contact@xiuke.tv\n\n企业合作\n邮箱：yanglicong@xiuke.tv\n\n秀客微博：@秀客微节目\n秀客微信：秀客短视频（xiuke-tv)"
                 Weixin.text_msg(msg.ToUserName, msg.FromUserName, about)
             #更多--我的试片
             when 'previews'
