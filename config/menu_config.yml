@@ -51,10 +51,10 @@ production:
           type: view
           name: 绑定
           url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx09a8a54a7050bdf0&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
-        -
-          type: view
-          name: 建议
-          url: "http://5tv.com/"
+        #-
+        #  type: view
+        #  name: 建议
+        #  url: "http://5tv.com/"
         -
           type: click
           name: 我的试片
