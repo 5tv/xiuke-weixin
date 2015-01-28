@@ -32,15 +32,15 @@ development: &default
         -
           type: view
           name: 绑定账号
-          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://182.92.218.3/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
         -
           type: click
           name: 我的追剧
           key: follows
         -
-          type: click
+          type: view
           name: app下载
-          key: download  
+          url: http://5tv.com/app_downloads/show?newest=true  
         -
           type: click
           name: 勾搭5娘
@@ -49,4 +49,49 @@ test:
   <<: *default
 
 production:
-  <<: *default
+  button:
+    -
+      name: 5爱追剧
+      sub_button: 
+        -
+          type: click
+          name: 经典神速剧
+          key: classic
+        -
+          type: click
+          name: 搞笑系列剧
+          key: joke
+        -
+          type: click
+          name: 点我看更多
+          key: click_for_more
+    -
+      name: 5爱活动
+      sub_button:
+        -
+          type: click
+          name: 欢乐赢电视
+          key: get_tv
+        -
+          type: click
+          name: 没事玩游戏
+          key: play_game
+    -
+      name: 5的地盘
+      sub_button:
+        -
+          type: view
+          name: 绑定账号
+          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+        -
+          type: click
+          name: 我的追剧
+          key: follows
+        -
+          type: view
+          name: app下载
+          url: http://5tv.com/app_downloads/show?newest=true  
+        -
+          type: click
+          name: 勾搭5娘
+          key: pickup
