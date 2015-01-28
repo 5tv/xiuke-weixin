@@ -84,8 +84,12 @@ Weixin2::App.helpers do
   def event_click_follows(msg)
     series = RestClient.get("http://#{UPHOST}/weixin/follows?weixin_openid=#{msg.FromUserName}")
     series_h = JSON.parse(series)
-    items = series_h.map{|s| item_create(s)}
-    news_deliver(msg, items)
+    if series_h.is_a? Array
+      items = series_h.map{|s| item_create(s)}
+      news_deliver(msg, items)
+    else
+      text_deliver(msg, series_h['message'])
+    end
   end
 
   def event_click_classic(msg)
