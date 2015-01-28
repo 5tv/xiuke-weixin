@@ -23,9 +23,9 @@ development: &default
           name: 欢乐赢电视
           key: get_tv
         -
-          type: click
+          type: view
           name: 没事玩游戏
-          key: play_game
+          url: http://youxi.weixin199.com/games/memeda/
     -
       name: 5的地盘
       sub_button:
