@@ -40,7 +40,8 @@ development: &default
         -
           type: view
           name: app下载
-          url: http://5tv.com/app_downloads/show?newest=true  
+          #url: http://5tv.com/app_downloads/show?newest=true  
+          url: https://itunes.apple.com/us/app/5tv-shou-ji-ju/id940044276?l=zh&ls=1&mt=8
         -
           type: click
           name: 勾搭5娘
@@ -82,7 +83,7 @@ production:
         -
           type: view
           name: 绑定账号
-          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx09a8a54a7050bdf0&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
         -
           type: click
           name: 我的追剧
