@@ -120,7 +120,7 @@ Weixin2::App.helpers do
   end
 
   def event_click_pick_up(msg)
-    
+
   end
 
   def item_create(hash)
@@ -129,7 +129,7 @@ Weixin2::App.helpers do
     desc = hash[:description]
     cover = hash[:cover]
     url = hash[:url]
-    Weixin.item(title, desc, cover, link_url)
+    Weixin.item(title, desc, cover, url)
   end
 
   def news_deliver(msg, items)
