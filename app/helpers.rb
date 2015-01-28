@@ -148,4 +148,23 @@ Weixin2::App.helpers do
     {message: 'this is test'}.to_json
   end
 
+  def get_unionid(msg)
+    if WEIXIN_CLIENT.expired? || WEIXIN_CLIENT.access_token.nil?
+      WEIXIN_CLIENT.authenticate
+      t = WEIXIN_CLIENT.access_token
+      weixin_openid = msg.FromUserName
+      union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
+      union_string = RestClient.get(union_link)
+      union_json = JSON.parse(union_string)
+      unionid = union_json['unionid']
+    else
+      t = WEIXIN_CLIENT.access_token
+      weixin_openid = msg.FromUserName
+      union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
+      union_string = RestClient.get(union_link)
+      union_json = JSON.parse(union_string)
+      unionid = union_json['unionid']
+    end
+  end
+
 end
