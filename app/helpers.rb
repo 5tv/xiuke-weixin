@@ -21,7 +21,7 @@ Weixin2::App.helpers do
   end
 
   def text(msg)
-    case msg.Content
+    case msg.Content.force_encoding('utf-8')
     when '大转盘'
       text_lottery(msg)
     else
