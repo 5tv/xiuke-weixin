@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1,user-scalable=no,maximum-scale=1,initial-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <title>活动开始，请进入页面开始刮奖</title>
+    <link rel="stylesheet" type="text/css" href="./css/commonl.css">
+
+    <style>
+        body {
+            background: url(./images/activity-scratch-card-bg.jpg) #944f20;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .banner {
+            position: relative;
+            width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .activity {
+            width: 320px;
+            height: 208px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .boxcontent {
+            margin: 15px 10px;
+            border-radius: 5px;
+            padding: 2px;
+            background-color: #ffffff;
+            -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+            -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+            color: #333;
+        }
+
+        .box {
+            border-radius: 5px;
+            font-size: 14px;
+            border: 1px dashed rgba(0, 0, 0, 0.3);
+        }
+
+        .box .title-red {
+            padding: 0 5px 0px 10px;
+            background: url(./images/title-bg-brown.png) no-repeat 0 0;
+            border-radius: 3px 3px 3px 0;
+            color: #ffffff;
+            height: 22px;
+            line-height: 22px;
+            margin: -1px;
+        }
+
+        .box .Detail {
+            padding: 15px;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .px {
+            position: relative;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) inset;
+            background-color: #FFFFFF;
+            border-radius: 0.6em 0.6em 0.6em 0.6em;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            color: #333333;
+            text-shadow: 0 1px 0 #FFFFFF;
+            display: block;
+            width: 100%;
+            padding: 6px 10px;
+            font-size: 18px;
+            margin: 10px 0 0 0;
+            font-family: Arial, Helvetica, sans-serif;
+            -webkit-appearance: none;
+        }
+
+        .px[type="text"], .px[type="password"] {
+            width: 100%;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .pxbtn {
+            background: #ff6501;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#ffa201), to(#ff6501));
+            background-image: -webkit-linear-gradient(#ffa201, #ff6501);
+            background-image: -moz-linear-gradient(#ffa201, #ff6501);
+            background-image: -ms-linear-gradient(#ffa201, #ff6501);
+            background-image: -o-linear-gradient(#ffa201, #ff6501);
+            background-image: linear-gradient(#ffa201, #ff6501);
+            border: 1px solid #ff6501;
+            border-bottom: 1px solid #d35605;
+            color: #ffffff;
+            font-weight: bold;
+            text-shadow: 0 1px 0 #FFFFFF;
+            border-radius: 0.6em 0.6em 0.6em 0.6em;
+            display: block;
+            width: 100%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 0 0 2px #BE4205;
+            font-size: 18px;
+            padding: 10px;
+            margin: 10px 0 0 0;
+        }
+
+        #scratchpad, #prize {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            top: 140px;
+            left: 105px;
+            text-align: center;
+            font-size: 20px;
+            line-height: 40px;
+            color: #333;
+        }
+    </style>
+    <script src="./js/jquery-1.7.2.min.js"></script>
+    <script src="./js/wScrathcPad.js"></script>
+    <script src="./js/alert.js"></script>
+</head>
+<body>
+<style>
+    #onloading {
+        position: fixed;
+        z-index: 9;
+        left: 50%;
+        margin-left: -60px;
+        width: 100px;
+        padding: 0.5em 1em;
+        background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.7);
+        text-align: center;
+        font-size: 1em;
+        border-radius: 6px 6px 6px 6px;
+        color: #f6f6f6;
+        text-align: justify;
+    }
+
+    #onloading p {
+        text-align: center;
+        line-height: 30px;
+    }
+
+    #onloading img {
+        vertical-align: bottom;
+        height: 30px;
+    }
+</style>
+<div id="onloading"><p>
+    <img height="30"
+         src="data:image/gif;base64,R0lGODlhJQAlAJECAL3L2AYrTv///wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgACACwAAAAAJQAlAAACi5SPqcvtDyGYIFpF690i8xUw3qJBwUlSadmcLqYmGQu6KDIeM13beGzYWWy3DlB4IYaMk+Dso2RWkFCfLPcRvFbZxFLUDTt21BW56TyjRep1e20+i+eYMR145W2eefj+6VFmgTQi+ECVY8iGxcg35phGo/iDFwlTyXWphwlm1imGRdcnuqhHeop6UAAAIfkEBQoAAgAsEAACAAQACwAAAgWMj6nLXAAh+QQFCgACACwVAAUACgALAAACFZQvgRi92dyJcVJlLobUdi8x4bIhBQAh+QQFCgACACwXABEADAADAAACBYyPqcsFACH5BAUKAAIALBUAFQAKAAsAAAITlGKZwWoMHYxqtmplxlNT7ixGAQAh+QQFCgACACwQABgABAALAAACBYyPqctcACH5BAUKAAIALAUAFQAKAAsAAAIVlC+BGL3Z3IlxUmUuhtR2LzHhsiEFACH5BAUKAAIALAEAEQAMAAMAAAIFjI+pywUAIfkEBQoAAgAsBQAFAAoACwAAAhOUYJnAagwdjGq2amXGU1PuLEYBACH5BAUKAAIALBAAAgAEAAsAAAIFhI+py1wAIfkEBQoAAgAsFQAFAAoACwAAAhWUL4AIvdnciXFSZS6G1HYvMeGyIQUAIfkEBQoAAgAsFwARAAwAAwAAAgWEj6nLBQAh+QQFCgACACwVABUACgALAAACE5RgmcBqDB2MarZqZcZTU+4sRgEAIfkEBQoAAgAsEAAYAAQACwAAAgWEj6nLXAAh+QQFCgACACwFABUACgALAAACFZQvgAi92dyJcVJlLobUdi8x4bIhBQAh+QQFCgACACwBABEADAADAAACBYSPqcsFADs=">
+    载入中···</p></div>
+<script>
+    $half_height = $(window).height() / 2;
+    $half_height = $half_height - $("#onloading").height() / 2;
+    $("#onloading").css('top', $half_height + 'px');
+    $(document).ready(function () {
+        $("#onloading").fadeOut(500, function () {
+            $("#onloading").remove();
+        });
+    });
+
+</script>
+
+
+<script src="./js/fastclick.js"></script>
+<script>
+    $(function () {
+        $.get("./ms_ajax.php?siteid=44&process_type=_behavior_view_&title=" + encodeURIComponent(document.title) + "&url=" + encodeURIComponent(document.URL));
+        FastClick.attach(document.body);
+    });
+</script>
+<div class="main">
+    <div class="banner"><img class="activity" src="./images/activity-scratch-card-bannerbg.png"/>
+
+        <div id="prize" class="prize_result">-dfadf-</div>
+        <div id="scratchpad">
+            <div style="position: relative; width: 150px; height: 0px; cursor: default;">
+                <canvas width="150" height="40" style="cursor: default;"></canvas>
+            </div>
+            <input id="did" type="hidden" value="6935"/>
+        </div>
+    </div>
+    <div class="content">
+        <div id="result_box" class="boxcontent" style="display:none;">
+            <div class="box">
+                <div class="title-red"><span>抽奖结果：</span></div>
+                <div class="Detail">
+                    <p id="prize_result" class="prize_result">--</p>
+                </div>
+                <div id="user_sub_box" style="margin:0px 15px;display:none;">
+                    <p>兑奖sn码：<span class="sncode">--</span></p>
+
+                    <p><input name="" class="px" id="tel" value="" type="text" placeholder="用户请输入您的手机号"></p>
+
+                    <p><input name="" class="px" id="password" type="password" value="" placeholder="商家输入兑奖密码"></p>
+
+                    <p><input class="pxbtn" name="提 交" id="save-btnn" type="button" value="确认领奖"></p>
+
+                    <p>注：请出示给商家确认领奖</p>
+                </div>
+            </div>
+        </div>
+        <div class="boxcontent ">
+            <div class="box">
+                <div class="title-red"><span>奖项设置：</span></div>
+                <div class="Detail">
+                    <p>一等奖：ihpone5 5个 </p>
+
+                    <p>二等奖：ipad2 10个 </p>
+
+                    <p>三等奖：华为P6 100个 </p>
+                </div>
+            </div>
+        </div>
+        <div class="boxcontent ">
+            <div class="box">
+                <div class="title-red">使用说明：</div>
+                <div class="Detail">
+                    <p>开始时间：2013-09-16 10:32:13</p>
+
+                    <p>结束时间：2013-12-26 15:01:56</p>
+
+                    <p>本次活动每人可共参与100次 ，每天可参与10 次，已参与1次 </p>
+
+                    <p>本次活动每天可以刮3次，当天机会没有用完，返回点击可以重来哦。每人100次机会哦
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var useragent = window.navigator.userAgent.toLowerCase();
+        var statu = "enable";
+        var num = 0;
+        var goon = true;
+        $("#scratchpad").wScratchPad({
+            width: 150,
+            height: 40,
+            color: "#a9a9a7",
+            scratchMove: function () {
+                if (num == 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: "${pageContext.request.contextPath}/queryAction.action",
+                        async: false,
+                        data: {siteid: 44,
+                            id: 81,
+                            process_type: '_ggl_data_'},
+                        dataType: "json",
+                        success:function (data) {
+							 
+                           
+							 
+                               // $("#did").val(data.result.did);
+							  
+                                $(".prize_result").html(data.prize);
+                                 $(".sncode").html(data.snoid);
+                                if (data.id>4) {
+                                    $("#user_sub_box").show();
+                                }
+                             if (data.status == "error") {
+                                alert(data.msg);
+                                $("#scratchpad").unbind("wScratchPad");
+                            }
+                        },
+                        error: function (data, status, e) {
+                            alert("请求失败！");
+                            $("#scratchpad").unbind("wScratchPad");
+                        }
+						
+                    });
+					
+                }
+                if (statu == "enable") {
+                    statu = "diaable";
+                }
+                if (useragent.indexOf("android 4") > 0) {
+                    if ($("#scratchpad").css("color").indexOf("51") > 0) {
+                        $("#scratchpad").css("color", "rgb(50,50,50)");
+                    } else if ($("#scratchpad").css("color").indexOf("50") > 0) {
+                        $("#scratchpad").css("color", "rgb(51,51,51)");
+                    }
+                }
+                num++;
+                if (num > 15 && goon) {
+                    goon = false;
+                    $("#result_box").show();
+                }
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#save-btnn').click(function () {
+            var did = $("#did").val();
+            var password = $("#password").val();
+            var tel = $("#tel").val();
+            if (!tel.length) {
+                alert("请输入手机号码");
+                return;
+            }
+            if (!password.length) {
+                alert("请输入兑奖密码");
+                return;
+            }
+            if (!did.length) {
+                return;
+            }
+            $.post("./ms_ajax.php",
+                    {
+                        siteid: 44,
+                        id: 81,
+                        did: did,
+                        tel: tel,
+                        password: password,
+                        process_type: '_vip_use_ggl_'
+                    },
+                    function (data) {
+                        if (data.status == "success") {
+                            alert("操作成功！");
+                            window.location.reload();
+                        } else if (data.status == "error") {
+                            alert(data.msg);
+                        }
+                    }, "json");
+
+        });
+    });
+</script>
+</body>
+</html>

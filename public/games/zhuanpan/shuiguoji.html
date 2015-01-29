@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <base href=".">
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1">
+    <title>活动开始，请进入页面开试试运气吧</title>
+    <link rel="stylesheet" href="css/tigerslot.css">
+    <script src="js/jquery-1.10.0.js"></script>
+    <script src="js/quo.js"></script>
+    <script src="js/tigerslot.js"></script>
+    <script src="js/alert.js"></script>
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+</head>
+<body>
+<div style="margin:0px auto 35px auto; width:316px; position: relative;">
+    <div class="tigerslot">
+        <div class="machine">
+            <div class="strip left">
+                <div class="box" style="background-position: 0px 0px;"></div>
+                <div class="cover"></div>
+            </div>
+            <div class="strip middle">
+                <div class="box" style="background-position: 0px 0px;"></div>
+                <div class="cover"></div>
+            </div>
+            <div class="strip right">
+                <div class="box" style="background-position: 0px 0px;"></div>
+                <div class="cover"></div>
+            </div>
+            <div class="gamebutton">
+                PLAY
+            </div>
+        </div>
+    </div>
+    <div class="xbox">
+        <div class="xbox_lb">
+            奖项设置
+            <div class="xbox_c"></div>
+        </div>
+        <div class="xbox_x">
+            <p>一等奖： ihpone5，数量：5 </p>
+            <p>二等奖： ipad2，数量：10 </p>
+            <p>三等奖： 华为P6，数量：100 </p>
+        </div>
+    </div>
+    <div class="xbox">
+        <div class="xbox_lb">
+            活动说明
+            <div class="xbox_c"></div>
+        </div>
+        <div class="xbox_x">
+            <p>开始时间：2013-12-02 14:35:52</p>
+            <p>结束时间：2013-12-31 14:13:00</p>
+            <p>本次活动每人可共参与100次 ，每天可参与3 次，已参与1次 </p>
+            <p> 点击进入抽奖活动页面 </p>
+        </div>
+    </div>
+
+    <div class="alert">
+        <div class="alert_t">
+            消息提示
+            <div class="close">X</div>
+        </div>
+        <div class="msg">谢谢参与，再玩一次！</div>
+        <div class="btn">确定</div>
+    </div>
+
+    <div class="apply">
+        <div class="title">我要兑奖
+            <div class="close">X</div>
+        </div>
+        <div class="msg">
+            恭喜您中奖了<span clss="snn" >-</span><br>
+            兑奖SN码：<span class="sn">-</span><br>
+
+            请填写你的手机号码<br>
+            <input name="" class="px" id="tel" type="text" value="" placeholder="电话号码">
+            请商家输入兑奖密码<br>
+            <input name="" class="px" id="password" type="password" value="" placeholder="商家输入兑奖密码">
+        </div>
+        <div class="btns">
+            <div class="ok">确定</div>
+            <div class="close">取消</div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+/// <reference path="jquery-1.10.0.js" />
+/// <reference path="jquery.mobile-1.3.1.js" />
+var did = 0;
+var day_last_number = 2;
+
+(function () {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame']
+                || window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function (callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function () { callback(currTime + timeToCall); },
+                    timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function (id) {
+            clearTimeout(id);
+        };
+}());
+
+(function () {
+    window.GameTimer = function (fn, timeout) {
+        this.__fn = fn;
+        this.__timeout = timeout;
+        this.__running = false;
+        this.__lastTime = Date.now();
+        this.__stopcallback = null;
+    };
+
+    window.GameTimer.prototype.__runer = function () {
+        if (Date.now() - this.__lastTime >= this.__timeout) {
+            this.__lastTime = Date.now();
+            this.__fn.call(this);
+        }
+        if (this.__running) {
+            window.requestAnimationFrame(this.__runer.bind(this));
+        }
+        else {
+            if (typeof this.__stopcallback === 'function') {
+                window.setTimeout(this.__stopcallback,100);
+            }
+        }
+    };
+
+    window.GameTimer.prototype.start = function () {
+        this.__running = true;
+        this.__runer();
+    };
+    window.GameTimer.prototype.stop = function (callback) {
+        this.__running = false;
+        this.__stopcallback = callback;
+    };
+
+})();
+
+$(function () {
+    //抽奖请求地址
+    var url_rndprize = '${pageContext.request.contextPath}/queryResult.action';
+    var itemPositions = [
+        0, //草莓
+        100,//梨
+        200,//苹果
+        300,//香蕉
+        400,//樱桃
+        500//青苹果
+    ];
+
+    //游戏开始   羊汤
+    var gameStart = function () {
+      //先后台抽奖，生成获奖纪录，然后调用老虎机
+      $.post(url_rndprize,{
+		siteid:44,
+		id:248,
+		did : did,
+		process_type:'_sgj_data_'
+	  },
+        function(data) {
+			//alert(data.result.day_last_number+"\t"+data.status);
+		
+	      	//if(data.status == "success"){
+		      	last_day_number = data.result.day_last_number;
+		      	did = data.result.did;
+	      		boxCycle.start(data.result);
+	      	  if( data.status == "error" ){
+				xalert(data.msg);
+		     }
+      }, "json");
+  };
+
+    //游戏结束
+    var gameOver = function (resultData) {
+        //未中奖
+        if(resultData.type == 0){
+            // alert(resultData.prize_type);
+            xalert(resultData.prize_type);
+            $('.machine .gamebutton').removeClass('disabled');
+        }else{
+            //中奖
+            $('.machine .gamebutton').addClass('disabled');
+            xget(resultData.tips, resultData.sn);
+        }
+    };
+
+    var $machine = $('.machine');
+    var $slotBox = $('.tigerslot .box');
+
+    //开始，结束按钮
+    var $gameButton = $$('.machine .gamebutton').tap(function () {
+        if( !day_last_number ){
+            xalert("亲，请明天再来抽吧！");
+            return false;
+        }
+        var $this = $(this);
+        if (!$this.hasClass('disabled')) {
+            $this.addClass('disabled');
+            $this.toggleClass(function (index, classname) {
+                if (classname.indexOf('stop') > -1) {
+                    boxCycle.stop(function (resultData) {
+                        gameOver(resultData);
+                    });
+                    $(this).html("PLAY");
+                } else {
+                    gameStart();
+                    window.setTimeout(function () {
+                        $this.removeClass('disabled');
+                    },1500);
+                    $(this).html("STOP");
+                }
+                return 'stop';
+            });
+        }
+    });
+
+    var boxCycle = new function () {
+
+        var speed_left = 0, speed_middle = 0, speed_right = 0, maxSpeed = 25;
+        var running = false, toStop = false, toStopCount = 0;
+        var boxPos_left = 0, boxPos_middle = 0, boxPos_right = 0;
+        var toLeftIndex = 0, toMiddleIndex = 0, toRightIndex = 0;
+        var resultData;
+
+        var $box = $('.tigerslot .box'),
+                $box_left = $('.tigerslot .strip.left .box'),
+                $box_middle = $('.tigerslot .strip.middle .box'),
+                $box_right = $('.tigerslot .strip.right .box');
+
+        var fn_stop_callback = null;
+        var tmr = new GameTimer(function () {
+            if (toStop) {
+                toStopCount--;
+                speed_left = 0;
+                boxPos_left = -itemPositions[toLeftIndex];
+                if (toStopCount < 25) {
+                    speed_middle = 0;
+                    boxPos_middle = -itemPositions[toMiddleIndex];
+                    console.log(toMiddleIndex);
+                }
+                if (toStopCount < 0) {
+                    speed_right = 0;
+                    boxPos_right = -itemPositions[toRightIndex];
+                }
+
+            } else {
+                speed_left += 1;
+                speed_middle += 1;
+                speed_right += 1;
+                if (speed_left > maxSpeed) {
+                    speed_left = maxSpeed;
+                }
+                if (speed_middle > maxSpeed) {
+                    speed_middle = maxSpeed;
+                }
+                if (speed_right > maxSpeed) {
+                    speed_right = maxSpeed;
+                }
+            }
+
+            boxPos_left += speed_left;
+            boxPos_middle += speed_middle;
+            // console.log(boxPos_middle+",,"+ speed_middle);
+            boxPos_right += speed_right;
+
+            $box_left.css('background-position', '0 ' + boxPos_left + 'px')
+            $box_middle.css('background-position', '0 ' + boxPos_middle + 'px')
+            $box_right.css('background-position', '0 ' + boxPos_right + 'px')
+
+            if (speed_left == 0 && speed_middle == 0 && speed_right == 0) {
+                tmr.stop(fn_stop_callback.bind(this, resultData));
+            }
+
+        }, 33);
+
+        this.start = function (data) {
+            // console.log(data.middle);
+            toLeftIndex = data.left; toMiddleIndex = data.middle; toRightIndex = data.right;
+            running = true;
+            toStop = false;
+            resultData = data;
+            tmr.start();
+        };
+
+        this.stop = function (fn) {
+            fn_stop_callback = fn;
+            toStop = true;
+            toStopCount = 50;
+        };
+
+        this.reset = function () {
+            $box_left.css('background-position', '0 ' + itemPositions[0] + 'px');
+            $box_middle.css('background-position', '0 ' + itemPositions[0] + 'px');
+            $box_right.css('background-position', '0 ' + itemPositions[0] + 'px');
+        };
+        this.init = function(){
+            boxPos_left=itemPositions[0];
+            boxPos_middle=itemPositions[1];
+            boxPos_right=itemPositions[2];
+            $box_left.css('background-position', '0 ' + itemPositions[0] + 'px');
+            $box_middle.css('background-position', '0 ' + itemPositions[1] + 'px');
+            $box_right.css('background-position', '0 ' + itemPositions[2] + 'px');
+        };
+        this.init();
+        // this.reset();
+    };
+});
+
+//弹窗
+$(function(){
+    !function(window){
+        window.xalert=function(msg){
+            $(".alert .msg").html(msg);
+            $(".alert").show();
+        };
+        window.$$(".alert .btn").tap(function(){
+            $(".alert").hide();
+        });
+    }(window);
+});
+
+//况奖
+$(function(){
+    !function(window){
+        var $sn;
+        var $apply=$(".apply");
+        window.xget=function(snn,sn){
+            $(".apply .snn").html(snn);
+            $(".apply .sn").html(sn);
+            $sn=sn;
+            $apply.show();
+            $(".apply .mb").val("");
+        };
+        $$(".apply .close").tap(function(){
+            $apply.hide();
+        });
+
+        //提交
+        $$(".apply .ok").tap(function(){
+            var mob=$(".apply .mb").val();
+            var password = $("#password").val();
+            var tel = $("#tel").val();
+            if( !tel.length ){
+                alert("请输入手机号码");
+                return ;
+            }
+            if( !password.length ){
+                alert("请输入兑奖密码");
+                return ;
+            }
+            $.post("./ms_ajax.php",
+                    {
+                        siteid:44,
+                        id:248,
+                        did : did,
+                        tel:tel,
+                        password:password,
+                        process_type:'_sgj_use_'
+                    },
+                    function(data) {
+                        if (data.status == "success") {
+                            alert("操作成功！");
+                            window.location.reload();
+                        }else if( data.status == "error" ) {
+                            alert(data.msg);
+                        }
+                    }, "json");
+        })
+    }(window);
+});
+</script>
+</body>
+</html>

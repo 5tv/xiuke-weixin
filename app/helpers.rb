@@ -21,6 +21,17 @@ Weixin2::App.helpers do
   end
 
   def text(msg)
+    case msg.Content
+    when '大转盘'
+      text_lottery(msg)
+    else
+    end
+  end
+
+  def text_lottery(msg)
+    hash = {title: '5tv大摇奖,小伙伴们快来抢!', description: '快来领取神秘大奖', cover: "http://#{UPHOST}/yaojiang.jpg", url: "http://#{UPHOST}/games/zhuanpan/zhuanpan.html"}
+    item = item_create(hash)
+    news_deliver(msg, item)
   end
 
   def image(msg)
