@@ -29,7 +29,7 @@ Weixin2::App.helpers do
   end
 
   def text_lottery(msg)
-    hash = {title: '5tv大摇奖,小伙伴们快来抢!', description: '快来领取神秘大奖', cover: "http://#{UPHOST}/yaojiang.jpg", url: "http://#{UPHOST}/games/zhuanpan/zhuanpan.html"}
+    hash = {title: '5tv大摇奖,小伙伴们快来抢!', description: '快来领取神秘大奖', cover: "http://104.237.155.77/yaojiang.jpg", url: "http://104.237.155.77/games/zhuanpan/zhuanpan.html"}
     item = []
     item << item_create(hash)
     news_deliver(msg, item)
