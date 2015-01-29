@@ -14,9 +14,12 @@ Weixin::Menu.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret']).add(MENU)
 WEIXIN_CLIENT = Weixin::Client.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret'])
 if RACK_ENV == 'production'
   UPHOST = '5tv.com'
+  LocalServer = '106.187.35.209'
 else
   UPHOST =  '182.92.218.3'
+  LocalServer = '104.237.155.77'
 end
+
 ##
 # ## Enable devel logging
 #
