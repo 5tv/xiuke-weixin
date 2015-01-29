@@ -25,7 +25,7 @@ development: &default
         -
           type: view
           name: 没事玩游戏
-          url: http://youxi.weixin199.com/games/memeda/
+          url: http://104.237.155.77/weixinapi/game_random
     -
       name: 5的地盘
       sub_button:

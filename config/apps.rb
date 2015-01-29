@@ -33,7 +33,6 @@ Padrino.configure_apps do
   #set :protect_from_csrf, false
   set :protection, :except => [:path_traversal, :json_csrf]
   set :protect_from_csrf, false
-  set :root, PADRINO_ROOT
 end
 
 # Mounts the core application for this project
