@@ -16,7 +16,7 @@ if RACK_ENV == 'production'
   UPHOST = '5tv.com'
   LocalServer = '106.187.35.209'
 else
-  UPHOST =  '182.92.218.3'
+  UPHOST =  'weixintest.5tv.com'
   LocalServer = '104.237.155.77'
 end
 

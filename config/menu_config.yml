@@ -32,7 +32,7 @@ development: &default
         -
           type: view
           name: 绑定账号
-          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://182.92.218.3/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://weixintest.5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
         -
           type: click
           name: 我的追剧
