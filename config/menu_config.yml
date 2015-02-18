@@ -1,56 +1,96 @@
 development: &default
   button:
     -
-      type: click
-      name: 系列
-      key: serie
+      name: 5爱追剧
+      sub_button: 
+        -
+          type: click
+          name: 经典神速剧
+          key: classic
+        -
+          type: click
+          name: 搞笑系列剧
+          key: joke
+        -
+          type: click
+          name: 点我看更多
+          key: click_for_more
     -
-      type: click
-      name: 随便看看
-      key: lookingaround
+      # name: 5爱活动
+      name: 欢乐赢电视
+      type: view
+      url: http://5tv.com/weixin_supporters/mobi_show_p1
+      # sub_button:
+      #   -
+      #     type: click
+      #     name: 欢乐赢电视
+      #     key: get_tv
+      #   -
+      #     type: view
+      #     name: 没事玩游戏
+      #     url: http://104.237.155.77/weixinapi/game_random
     -
-      name: 更多
+      name: 5的地盘
       sub_button:
         -
-          type: click
-          name: 关于
-          key: about
-        -
           type: view
-          name: 绑定
-          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
-        -
-          type: view
-          name: 建议
-          url: "http://5tv.com/"
+          name: 绑定账号
+          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1532dfc6d2da9dcf&redirect_uri=http://weixintest.5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
         -
           type: click
-          name: 我的试片
-          key: previews
+          name: 我的追剧
+          key: follows
+        -
+          type: view
+          name: app下载
+          #url: http://5tv.com/app_downloads/show?newest=true  
+          url: https://itunes.apple.com/us/app/5tv-shou-ji-ju/id940044276?l=zh&ls=1&mt=8
+        -
+          type: click
+          name: 勾搭5娘
+          key: pickup
 test: 
   <<: *default
 
 production:
   button:
     -
-      type: click
-      name: 系列
-      key: serie
-    -
-      type: click
-      name: 随便看看
-      key: lookingaround
-    -
-      name: 更多
-      sub_button:
+      name: 5爱追剧
+      sub_button: 
         -
           type: click
-          name: 关于
-          key: about
+          name: 经典神速剧
+          key: classic
+        -
+          type: click
+          name: 搞笑系列剧
+          key: joke
+        -
+          type: click
+          name: 点我看更多
+          key: click_for_more
+    -
+      # name: 5爱活动
+      name: 欢乐赢电视
+      type: view
+      url: http://5tv.com/weixin_supporters/mobi_show_p1
+      # sub_button:
+      #   -
+      #     type: click
+      #     name: 欢乐赢电视
+      #     key: get_tv
+      #   -
+      #     type: click
+      #     name: 没事玩游戏
+      #     key: play_game
+    -
+      name: 5的地盘
+      sub_button:
         -
           type: view
-          name: 绑定
+          name: 绑定账号
           url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx09a8a54a7050bdf0&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+<<<<<<< HEAD
         #-
         #  type: view
         #  name: 建议
@@ -59,3 +99,17 @@ production:
           type: click
           name: 我的试片
           key: previews
+=======
+        -
+          type: click
+          name: 我的追剧
+          key: follows
+        -
+          type: view
+          name: app下载
+          url: http://5tv.com/app_downloads/show?newest=true  
+        -
+          type: click
+          name: 勾搭5娘
+          key: pickup
+>>>>>>> aldrich

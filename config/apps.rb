@@ -28,10 +28,13 @@
 Padrino.configure_apps do
   # enable :sessions
   set :session_secret, '14a30a20cd7f91d340661a9e07f5683aa9e2a0fe0992db0487adcbde8f7809f6'
-  set :protection, false
+  #set :protection, false
   # :except => :path_traversal
+  #set :protect_from_csrf, false
+  set :protection, :except => [:path_traversal, :json_csrf]
   set :protect_from_csrf, false
 end
 
 # Mounts the core application for this project
 Padrino.mount('Weixin2::App', :app_file => Padrino.root('app/app.rb')).to('/weixinapi')
+Padrino.mount('Weixin2::Game', :app_file => Padrino.root('game/app.rb')).to('/')

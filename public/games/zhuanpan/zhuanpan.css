@@ -1,0 +1,320 @@
+
+/*--- share start ---*/
+#share_mcover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 20000;
+}
+
+#share_mcover img {
+    position: fixed;
+    right: 18px;
+    top: 5px;
+    width: 260px;
+    height: 180px;
+    z-index: 20001;
+}
+
+#share_box {
+    margin: 15px 0;
+    display: block;
+}
+
+#share_box_1 {
+    float: left;
+    width: 49%;
+    display: block;
+}
+
+#share_box_2 {
+    float: right;
+    width: 49%;
+    display: block;
+}
+
+.share_clr {
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+.share_button2 {
+    font-size: 16px;
+    padding: 8px 0;
+    color: #000000;
+    background-color: #FFFFFF;
+    background-image: linear-gradient(to top, #f5f5f5, #ffffff);
+    border: 1px solid #D3D3D3;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    text-shadow: 0.5px 0.5px 1px #fff;
+    text-align: center;
+    border-radius: 3px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#share_box img {
+    width: 22px;
+    height: 22px;
+    vertical-align: top;
+    border: 0;
+}
+
+/*--- share end ---*/
+
+
+
+/*#*/
+#yddContainer {
+    display: block;
+    font-family: Microsoft YaHei;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: -4px;
+    left: -4px;
+    font-size: 12px;
+    border: 1px solid
+}
+
+#yddTop {
+    display: block;
+    height: 22px
+}
+
+#yddTopBorderlr {
+    display: block;
+    position: static;
+    height: 17px;
+    padding: 2px 28px;
+    line-height: 17px;
+    font-size: 12px;
+    color: #5079bb;
+    font-weight: bold;
+    border-style: none solid;
+    border-width: 1px
+}
+
+#yddTopBorderlr .ydd-sp {
+    position: absolute;
+    top: 2px;
+    height: 0;
+    overflow: hidden
+}
+
+.ydd-icon {
+    left: 5px;
+    width: 17px;
+    padding: 0px 0px 0px 0px;
+    padding-top: 17px;
+    background-position: -16px -44px
+}
+
+.ydd-close {
+    right: 5px;
+    width: 16px;
+    padding-top: 16px;
+    background-position: left -44px
+}
+
+#yddKeyTitle {
+    float: left;
+    text-decoration: none
+}
+
+#yddMiddle {
+    display: block;
+    margin-bottom: 10px
+}
+
+.ydd-tabs {
+    display: block;
+    margin: 5px 0;
+    padding: 0 5px;
+    height: 18px;
+    border-bottom: 1px solid
+}
+
+.ydd-tab {
+    display: block;
+    float: left;
+    height: 18px;
+    margin: 0 5px -1px 0;
+    padding: 0 4px;
+    line-height: 18px;
+    border: 1px solid;
+    border-bottom: none
+}
+
+.ydd-trans-container {
+    display: block;
+    line-height: 160%
+}
+
+.ydd-trans-container a {
+    text-decoration: none;
+}
+
+#yddBottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    background-position: left -22px
+}
+
+.ydd-padding010 {
+    padding: 0 10px
+}
+
+#yddWrapper {
+    color: #252525;
+    z-index: 10001;
+    background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
+}
+
+#yddContainer {
+    background: #fff;
+    border-color: #4b7598
+}
+
+#yddTopBorderlr {
+    border-color: #f0f8fc
+}
+
+#yddWrapper .ydd-sp {
+    background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
+}
+
+#yddWrapper a, #yddWrapper a:hover, #yddWrapper a:visited {
+    color: #50799b
+}
+
+#yddWrapper .ydd-tabs {
+    color: #959595
+}
+
+.ydd-tabs, .ydd-tab {
+    background: #fff;
+    border-color: #d5e7f3
+}
+
+#yddBottom {
+    color: #363636
+}
+
+#yddWrapper {
+    min-width: 250px;
+    max-width: 400px;
+}
+
+
+body {
+    padding: 0;
+    background-color: #2a8a00;
+}
+
+.demo {
+    width: 320px;
+    position: relative;
+    margin: 50px auto
+}
+
+#disk {
+    width: 320px; /*background:url(disk.jpg) no-repeat*/
+}
+
+#start {
+    width: 163px;
+    height: 320px;
+    position: absolute;
+    top: 34px;
+    left: 98px;
+}
+
+#start img {
+    cursor: pointer;
+    width: 80%;
+}
+
+img {
+    width: 100%;
+
+}
+
+.boxyellow {
+    background-color: #FEF8B2;
+}
+
+.boxcontent {
+    margin: 15px 15px 0;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: #FEF8B2;
+    -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    color: #333;
+}
+
+.box {
+    border-radius: 5px;
+    font-size: 14px;
+    border: 1px dashed rgba(0, 0, 0, 0.3);
+}
+
+.box .title-green {
+    padding: 0 5px 0px 10px;
+    background: url(images/title-bg-green.png) no-repeat 0 0;
+    border-radius: 3px 3px 3px 0;
+    color: #ffffff;
+    height: 22px;
+    line-height: 22px;
+    margin: -1px;
+}
+
+.box .Detail {
+    padding: 15px;
+}
+
+
+
+
+
+/**/
+#onloading {
+    position: fixed;
+    z-index: 9;
+    left: 50%;
+    margin-left: -60px;
+    width: 100px;
+    padding: 0.5em 1em;
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.7);
+    text-align: center;
+    font-size: 1em;
+    border-radius: 6px 6px 6px 6px;
+    color: #f6f6f6;
+    text-align: justify;
+}
+
+#onloading p {
+    text-align: center;
+    line-height: 30px;
+}
+
+#onloading img {
+    vertical-align: bottom;
+    height: 30px;
+}

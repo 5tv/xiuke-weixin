@@ -1,0 +1,317 @@
+body{
+    background: url(../images/marketing/lucky_bg_s.jpg) 0 0 repeat;
+    padding: 0px;
+    margin: 0px;
+}
+
+.tigerslot{
+    /*padding: 0;*/
+    /*background: url(../images/marketing/bg.png) 0 0 repeat;*/
+    /*min-height: 575px;*/
+}
+
+.xbox ,.alert, .apply{
+    width:90%;
+    background-color:#ffffff;
+    margin:0px auto;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.xbox .xbox_lb{
+    /*background: -webkit-gradient(linear, 0 0, 0 100%, from(#8e0202), to(#d91708);*/
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    padding-left:5px;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(#8e0202), to(#d91708));
+    position: relative;
+    /*background-color:#8e0202; */
+    color: #fff;
+    /*font-family: "榛戜綋";*/
+}
+.xbox .xbox_lb .xbox_c{
+    height: 0px;
+    width: 0px;
+    border-width:15px;
+    border-style: dashed solid dashed dashed;
+    border-color:transparent #ffffff transparent transparent;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.xbox .xbox_x{
+    padding: 5px 0px;
+    line-height: 22px;
+    font-size: 10.5pt;
+}
+
+.alert,.apply{
+    position: absolute;
+    width:300px;
+    top:200px;
+    left: 8px;
+    z-index: 300;
+    padding: 1px 1px 15px 1px;
+    display: none;
+}
+.alert .alert_t,.apply .title{
+    background-color: #000;
+    border-radius: 5px 5px 0px 0px;
+    height: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    color: #fff;
+    padding-left: 15px;
+}
+.alert .close,.apply .title .close{
+    float: right;
+    line-height: 25px;
+    vertical-align: middle;
+    padding-right: 5px;
+}
+.alert .msg, .apply .msg{ padding: 15px;}
+.alert .btn{ background-color: #dcdcdc; border:solid 1px #010101; border-radius:5px; width: 90%; margin: 0px auto; text-align: center;}
+
+
+
+/*.apply { display: block; ;}*/
+/*.apply .btns{}*/
+.apply .msg{ line-height: 22px; font-size: 10.5pt;}
+.apply .msg input{ width: 98%; border-radius: 5px; border: solid 1px #dcdcdc; height: 20px;}
+.apply .msg span{ color:#8e0202; }
+.apply .btns{ width: 90%; margin: 0px auto; font-size: 10.5pt;}
+.apply .btns div{ border-radius: 5px; padding: 2px 10px; font-size: 9pt; float: left; margin-left: 5px; }
+.apply .btns .ok{ border: solid 1px #8e0202; background-color: #8e0202; color: #fff; }
+.apply .btns .close{  border: solid 1px #dcdcdc; color: #000; }
+
+
+
+h1.ui-title{
+    font-size: 12px!important;
+    margin: 10px 5% 10px!important;
+}
+
+.machine{
+    width: 316px;
+    height: 334px;
+    background: url(../images/marketing/lucky_box_480_24.png) 0 0 no-repeat;
+    background-size: 100% 100%;
+    margin: 3px auto 60px auto;
+    position: relative;
+    overflow: visible;
+}
+
+.machine .gamebutton{
+    position: absolute;
+    bottom: -50px;
+    width: 122px;
+    height: 94px;
+    /*left: 50%;*/
+    margin-left: -61px;
+    /*background: url(../images/marketing/tigerslot.png) -63px -253px no-repeat;*/
+    z-index: 200;
+    font-size: 20pt;
+    left:170px;
+    top: 275px;
+    color: #fff;
+}
+
+.machine .gamebutton.stop{
+    /*background: url(../images/marketing/tigerslot.png) -185px -255px no-repeat;*/
+}
+.machine .gamebutton.disabled{
+    opacity: 0.4;
+}
+.tigerslot .strip{
+    position: absolute;
+    width: 63px;height: 100px;
+}
+
+.tigerslot .strip.left{
+    top: 130px;left: 35px;
+}
+.tigerslot .strip.middle{
+    top: 130px;left: 108px;
+}
+.tigerslot .strip.right{
+    top: 130px;left: 180px;
+}
+
+.tigerslot .box{
+    position: absolute;
+    width: 60px;height: 100%;
+    top: 0;left: 50%;margin-left: -30px;
+    overflow: hidden;
+    z-index: 100;
+    background: url(../images/marketing/fruit_60x600.png) 0 25px repeat-y;
+    /*background-size: 100%;*/
+}
+
+.tigerslot .cover{
+    position: absolute;
+    left: 0;top: 0;
+    width: 100%;height: 100%;
+    z-index: 100;
+    margin: 0;
+    /*background: url(../images/marketing/tigerslot.png) 0 -253px no-repeat;*/
+}
+
+.tigerslot .part{
+    margin: 10px 10px 3px 10px;
+    border: 2px solid #306931;
+    min-height: 100px;
+    border-radius: 8px;
+    background-color: #FFF9B3;
+    position:relative;
+}
+.tigerslot .part .title{
+    margin: 3px;
+    width: 113px;height: 18px;
+    background: url(../images/marketing/tigerslot.png) 0 -356px no-repeat;
+    padding: 3px 3px 3px 6px;
+    font-size: 14px;
+    line-height: 18px;
+    text-shadow: none;
+    color: #FFFFFF;
+}
+.tigerslot .part .content{
+    font-size: 12px;
+    text-shadow: none;
+    padding: 8px;
+}
+.tigerslot .part .content ul{
+    padding: 0;
+    margin: 0;
+}
+.tigerslot .part .content ul li{
+    margin: 1px;
+    list-style: none;
+}
+.tigerslot .part .content ol{
+    padding-left: 30px;
+    margin: 0;
+}
+.tigerslot .part .content ol li{
+    margin: 0 0 15px 0;
+}
+
+.tigerslot .part .content .prize{
+    margin: 1px;
+}
+
+.tigerslot .part .content .code{
+    color: #FF0000;
+}
+
+.tigerslot .part .content .getprize{
+    margin-left: 15px;
+    text-decoration: underline;
+    color: #0000FF;
+}
+.tigerslot .part .content .hadgetprize{
+    display: none;
+    margin-left: 15px;
+    color: #5ab500;
+}
+.tigerslot .part .content .hasGetPrize .getprize{
+    display: none;
+}
+.tigerslot .part .content .hasGetPrize .hadgetprize{
+    display: inline;
+}
+
+.tigerslot .light{
+    position: absolute;
+    width: 24px;height: 24px;
+    background: url(../images/marketing/tigerslot.png) -131px -354px no-repeat;
+}
+.tigerslot .light.on{
+    background: url(../images/marketing/tigerslot.png) -155px -354px no-repeat;
+}
+.tigerslot .light.l0{
+    left: 65px;top: 0;
+}
+.tigerslot .light.l1{
+    left: 110px;top: 0;
+}
+.tigerslot .light.l2{
+    left: 154px;top: 0;
+}
+.tigerslot .light.l3{
+    left: 196px;top: 0;
+}
+.tigerslot .light.l4{
+    left: 240px;top: 0;
+}
+.tigerslot .light.l5{
+    left: 278px;top: 14px;
+}
+.tigerslot .light.l6{
+    left: 288px;top: 48px;
+}
+.tigerslot .light.l7{
+    left: 293px;top: 84px;
+}
+.tigerslot .light.l8{
+    left: 293px;top: 124px;
+}
+.tigerslot .light.l9{
+    left: 289px;top: 162px;
+}
+.tigerslot .light.l10{
+    left: 280px;top: 194px;
+}
+.tigerslot .light.l11{
+    left: 254px;top: 212px;
+}
+.tigerslot .light.l12{
+    left: 220px;top: 212px;
+}
+.tigerslot .light.l13{
+    left: 80px;top: 212px;
+}
+.tigerslot .light.l14{
+    left: 40px;top:212px;
+}
+.tigerslot .light.l15{
+    left: 11px;top: 194px;
+}
+.tigerslot .light.l16{
+    left: 4px;top: 162px;
+}
+.tigerslot .light.l17{
+    left: 0;top: 124px;
+}
+.tigerslot .light.l18{
+    left: 0;top: 84px;
+}
+.tigerslot .light.l19{
+    left: 5px;top: 48px;
+}
+.tigerslot .light.l20{
+    left: 17px;top: 14px;
+}
+#rest_chance, #prizetype, #sncode{
+    color:#FF0000;
+}
+.scroll-reward-info {
+    height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.scroll-reward-info ul {
+    margin-top:0;
+    list-style-type: none;
+}
+.scroll-reward-info li {
+    height: 15px;
+    list-style-type: none;
+}
+.tigerslot .end-banner {
+    background-size: 100% auto;
+    height: 220px;
+}

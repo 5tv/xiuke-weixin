@@ -10,9 +10,16 @@ require 'rack-weixin'
 Bundler.require(:default, RACK_ENV)
 WX_ACCOUNT = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/weixin_account.yml')[RACK_ENV]
 MENU = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/menu_config.yml')[RACK_ENV]
-#app id and secret
 Weixin::Menu.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret']).add(MENU)
 WEIXIN_CLIENT = Weixin::Client.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret'])
+if RACK_ENV == 'production'
+  UPHOST = '5tv.com'
+  LocalServer = '106.187.35.209'
+else
+  UPHOST =  'weixintest.5tv.com'
+  LocalServer = '104.237.155.77'
+end
+
 ##
 # ## Enable devel logging
 #

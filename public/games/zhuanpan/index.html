@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-touch-fullscreen" content="YES" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="apple-touch-icon-precomposed" href="icon.png" />
+<meta http-equiv="Cache-Control" content="max-age=0" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0;  minimum-scale=1.0; maximum-scale=1.0" />
+<meta name="MobileOptimized" content="320" />
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+<title>幸运抽奖</title>
+<style type="text/css">
+*{ margin:0; padding:0;}
+body{ color:#fff; background:#c0c0c0; font-size:14px; font-family:"微软雅黑"; line-height:20px;}
+a{ color:#fff; text-decoration:none;}
+img{ border:none; vertical-align:middle;}
+ul{ overflow:hidden;}
+ul li{ list-style:none; float:left;}
+.wrapper{ width:320px; margin:0 auto; background:#fff;}
+.header{ background:url(images/banner.jpg) no-repeat; height:219px; position:relative;}
+.luck{ width:221px; height:40px; line-height:53px; cursor:pointer; position:absolute; right:46px; bottom:23px; font-size:28px; letter-spacing:25px; text-align:center; color:#000;}
+.myCanvas{ width:221px; height:40px; cursor:pointer; position:absolute; right:48px; bottom:15px;}
+.content{ background:url(images/content.jpg) no-repeat; height:281px;}
+.content ul{ padding:40px;}
+.content ul li{ margin-top:-0px;}
+</style>
+<script type="text/javascript" src="js/jquery-1.4.1.min.js"></script>
+<script type="text/javascript">
+	var hasTouch = 'ontouchstart' in window;
+	var canvas;
+	var ctx;
+	var color = "#fff";
+	var lines = [];
+	var points = [];
+	$(document).ready(function () {
+	    var offset = $("#myCanvas").offset();
+	    var canvas_left = offset.left;
+	    var canvas_top = offset.top;
+
+	    canvas = document.getElementById('myCanvas');
+	    ctx = canvas.getContext('2d');
+	    ctx.fillStyle = "#999";
+	    ctx.fillRect(0, 0, 221, 40);
+	    //移动
+	    var START_EV = hasTouch ? 'touchstart' : 'mousedown';
+	    var MOVE_EV = hasTouch ? 'touchmove' : 'mousemove';
+	    var END_EV = hasTouch ? 'touchend' : 'mouseup';
+	    document.getElementById("myCanvas").addEventListener(START_EV, touchCheck, false);
+	    document.getElementById("myCanvas").addEventListener(MOVE_EV, touchCheck, false);
+	    document.getElementById("myCanvas").addEventListener(END_EV, touchCheck, false);
+	    var startTouch;
+	    var isDrag = false;
+	    var lastPoint;
+	    function touchCheck(evt) {
+	        evt.preventDefault();
+	        var touchX;
+	        var touchY;
+	        if (hasTouch) {
+	            if (evt.touches.length > 0) {
+	                touchX = evt.touches[0].pageX - canvas_left;
+	                touchY = evt.touches[0].pageY - canvas_top;
+	            }
+	            else {
+	                if (lastPoint) {
+	                    touchX = lastPoint.x;
+	                    touchY = lastPoint.y;
+	                }
+	            }
+	        }
+	        else {
+	            touchX = evt.pageX - canvas_left;
+	            touchY = evt.pageY - canvas_top;
+	        }
+	        
+	        switch (evt.type) {
+	            case START_EV:
+	                DrawLine();
+	                points = [];
+	                points.push({ x: touchX, y: touchY });
+	                isDrag = true;
+	                lastPoint = { x: touchX, y: touchY };
+	                break;
+	            case MOVE_EV:
+	                if (isDrag) {
+	                    points.push({ x: touchX, y: touchY });
+	                    lastPoint = { x: touchX, y: touchY };
+	                    DrawLine();
+	                }
+	                break;
+	            case END_EV:
+	                isDrag = false;
+	                if (points.length > 0) {
+	                    points.push({ x: touchX, y: touchY });
+	                    lines.push(points);
+	                    DrawLine();
+	                }
+	                break;
+	        }
+	    }
+	    function DrawSingleLine(ctx, line) {
+	        for (var j = 0; j < line.length; j++) {
+	            var point = line[j];
+	            if (j == 0)
+	                ctx.moveTo(point.x, point.y);
+	            else
+	                ctx.lineTo(point.x, point.y);
+	        }
+	    }
+	    function DrawLine() {
+	        ctx.clearRect(0, 0, 221, 40);
+	        ctx.globalCompositeOperation = "source-over";
+	        ctx.fillStyle = "#999";
+	        /*
+	        var img = new Image();
+	        img.src = "images/luck.png";
+	        ctx.drawImage(img, 0, 0);*/
+	        ctx.fillRect(0, 0, 221, 40);
+	        ctx.globalCompositeOperation = "destination-out";
+	        ctx.beginPath();
+	        ctx.strokeStyle = color;
+	        ctx.lineWidth = 4;
+	        var tempLines = lines;
+	        if (tempLines.length == 0) {
+	            tempLines.push(points);
+	        }
+	        for (var i = 0; i < tempLines.length; i++) {
+	            var line = tempLines[i];
+	            DrawSingleLine(ctx, line);
+	        }
+	        if (isDrag && points.length > 0)
+	            DrawSingleLine(ctx, points);
+	        ctx.stroke();
+	        ctx.closePath();
+	    }
+	});
+	function lotterySubmit() {
+		   var openid = $("#openid").val();
+		   var url="../lotteryUser/registLottery?openid="+openid;
+	       window.location.href=url;
+	}
+</script>
+</head>
+<body>
+<div class="wrapper">
+	<input type="hidden" id='openid' value="asdf"/>
+	<div class="header">
+        <div class="luck">谢谢参与</div>
+        <canvas id="myCanvas" class="myCanvas" width="221" height="40">
+                your browser does not support the canvas element
+    	</canvas>
+    </div>
+    <div class="content">
+    	<ul>
+            <li style="color:black;">凡持工商银行银行卡在指定商家消费即可参与刮奖</li>
+            <li>奖项设置：<br />
+    一等奖（50名）<br />
+    二等奖（1000名）<br />
+    三等奖（10000名）<br />
+    参与奖（100000名）</li>
+        </ul>
+    </div>
+</div>
+<div style="padding:10px 0;text-align:center;"><a style="color:#333;" onclick="lotterySubmit()">中奖补全信息页面</a><br><a style="color:#333;" href="http://a.3g.cn/case.aspx">返回案例首页</a></div>
+</body>
+</html>

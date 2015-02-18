@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0;}
+a{ color:#2F3E46; text-decoration:none;}
+ul li{ list-style:none;}
+.header{ background:#3C3C3C; text-align:center;}
+.header h1{ font-size:16px; color:#fff; height:50px; line-height:50px;}
+.content{ padding:10px;}
+.footer{ height:50px; line-height:50px; font-size:14px; font-weight:bold; text-align:center; background:-moz-linear-gradient(#FFFFFF, #F1F1F1) repeat #EEEEEE; background:-webkit-linear-gradient(#FFFFFF, #F1F1F1) repeat #EEEEEE;}
+.link{ font-weight:bold; border:1px solid #ddd; border-top:none; -moz-border-radiu:15px; -webkit-border-radius:15px; border-radius:15px;}
+.link li{ height:40px; line-height:40px; border-top:1px solid #ddd; background:-moz-linear-gradient(#FFFFFF, #F1F1F1) repeat #EEEEEE; background:-webkit-linear-gradient(#FFFFFF, #F1F1F1) repeat #EEEEEE;}
+.link li.first{ border-top:none; border-top-left-radius: 0.9em; border-top-right-radius: 0.9em; border-top:1px solid #ddd;}
+.link li.last{ border-bottom-left-radius: 0.9em; border-bottom-right-radius: 0.9em;}
+.link a{ display:block; padding-left:20px;}
+.link a:hover{ background: -moz-linear-gradient(#F6F6F6, #E0E0E0) repeat #DFDFDF; background: -webkit-linear-gradient(#F6F6F6, #E0E0E0) repeat #DFDFDF;}
+.link .first a:hover{ border-top-left-radius: 0.9em; border-top-right-radius: 0.9em;}
+.link .last a:hover{ border-bottom-left-radius: 0.9em; border-bottom-right-radius: 0.9em;}
