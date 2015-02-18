@@ -80,26 +80,16 @@ production:
       #     name: 欢乐赢电视
       #     key: get_tv
       #   -
-      #     type: click
+      #     type: view
       #     name: 没事玩游戏
-      #     key: play_game
+      #     url: http://104.237.155.77/weixinapi/game_random
     -
       name: 5的地盘
       sub_button:
         -
           type: view
           name: 绑定账号
-          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx09a8a54a7050bdf0&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
-<<<<<<< HEAD
-        #-
-        #  type: view
-        #  name: 建议
-        #  url: "http://5tv.com/"
-        -
-          type: click
-          name: 我的试片
-          key: previews
-=======
+          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx09a8a54a7050bdf0&redirect_uri=http://weixintest.5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
         -
           type: click
           name: 我的追剧
@@ -107,9 +97,9 @@ production:
         -
           type: view
           name: app下载
-          url: http://5tv.com/app_downloads/show?newest=true  
+          #url: http://5tv.com/app_downloads/show?newest=true  
+          url: https://itunes.apple.com/us/app/5tv-shou-ji-ju/id940044276?l=zh&ls=1&mt=8
         -
           type: click
           name: 勾搭5娘
           key: pickup
->>>>>>> aldrich
