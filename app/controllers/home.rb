@@ -13,6 +13,10 @@ Weixin2::App.controllers :home do
 
   get :test, map: '/test' do
     test
+  rescue=>e
+    STDERR.puts e
+    STDERR.puts e.backtrace.join("\n")
+    halt 500, {message: e.to_s}.to_json
   end
 
   post :create, map: '/' do
@@ -21,6 +25,10 @@ Weixin2::App.controllers :home do
     #logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
     new_message = msg_router(message) unless message.nil?
     new_message
+  rescue=>e
+    STDERR.puts e
+    STDERR.puts e.backtrace.join("\n")
+    halt 500, {message: e.to_s}.to_json
   end
   
 
