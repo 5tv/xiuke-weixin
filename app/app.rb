@@ -169,7 +169,10 @@ module Weixin2
             new_message = msg_router(message) unless message.nil?
             new_message
         end
-        
+	
+	get '/test' do
+	    'test'
+	end        
     end
 
   end
