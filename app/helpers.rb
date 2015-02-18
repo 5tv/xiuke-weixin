@@ -71,7 +71,7 @@ Weixin2::App.helpers do
   end
 
   def event_subscribe(msg)
-    welcome = '欢迎您关注秀客网官方微信服务号，点击‘系列’立即观看5tv最新制作的系列 点击‘随便看看’立即观看精彩短视频。精彩内容尽在秀客。'
+    welcome = '欢迎您关注秀客网官方微信服务号。精彩内容尽在秀客。'
     Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
   end
 
