@@ -89,7 +89,7 @@ production:
         -
           type: view
           name: 绑定账号
-          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx09a8a54a7050bdf0&redirect_uri=http://weixintest.5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+          url: "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx09a8a54a7050bdf0&redirect_uri=http://5tv.com/bind&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
         -
           type: click
           name: 我的追剧
