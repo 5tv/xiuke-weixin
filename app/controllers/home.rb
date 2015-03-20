@@ -33,7 +33,7 @@ Weixin2::App.controllers :home do
       # content_type :xml, :charset => 'utf-8'
       puts request.body.read
       message = request.env[Weixin::Middleware::WEIXIN_MSG]
-      logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
+      #logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
       new_message = msg_router(message) unless message.nil?
       new_message
     rescue=>e
