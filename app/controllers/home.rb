@@ -12,13 +12,20 @@ Weixin2::App.controllers :home do
   end
 
   get :test, map: '/test' do
-    begin 
+    begin
+      p params 
       test
     rescue=>e
       STDERR.puts e
       STDERR.puts e.backtrace.join("\n")
       halt 500, {message: e.to_s}.to_json
     end
+  end
+
+  post :test, map: '/test' do
+    p params
+    p request.body.read
+    text('hello')
   end
 
   post :create, map: '/' do
