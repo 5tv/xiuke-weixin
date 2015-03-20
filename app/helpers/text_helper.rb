@@ -10,8 +10,10 @@ module Weixin2
       private
       def search(msg)
         content = msg.Content.force_encoding('utf-8')
+        url = "http://#{UPHOST}/v1/search/wechat_search?key=#{content}&account_id=29714"
+        url = URI.encode(url.strip)
         string = Timeout::timeout(20) do
-          RestClient.get("http://#{UPHOST}/v1/search/wechat_search?key=#{content}&account_id=29714")
+          RestClient.get(url)
         end
         string_arr = JSON.parse(string)
         item = []
