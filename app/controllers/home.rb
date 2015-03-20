@@ -12,7 +12,8 @@ Weixin2::App.controllers :home do
   end
 
   get :test, map: '/test' do
-    begin 
+    begin
+      p params 
       test
     rescue=>e
       STDERR.puts e
@@ -21,11 +22,18 @@ Weixin2::App.controllers :home do
     end
   end
 
+  post :test, map: '/test' do
+    p params
+    p request.body.read
+    text('hello')
+  end
+
   post :create, map: '/' do
     begin
-      content_type :xml, :charset => 'utf-8'
+      # content_type :xml, :charset => 'utf-8'
+      puts request.body.read
       message = request.env[Weixin::Middleware::WEIXIN_MSG]
-      logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
+      #logger.info "原始数据: #{request.env[Weixin::Middleware::WEIXIN_MSG_RAW]}"
       new_message = msg_router(message) unless message.nil?
       new_message
     rescue=>e
