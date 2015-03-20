@@ -48,6 +48,7 @@ end
 # Add your before (RE)load hooks here
 #
 Padrino.before_load do
+  I18n.default_locale = 'zh_cn'
 end
 
 ##
