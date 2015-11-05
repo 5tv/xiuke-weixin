@@ -15,20 +15,20 @@ development: &default
           type: click
           name: 点我看更多
           key: click_for_more
-    -
-      # name: 5爱活动
-      name: 欢乐赢电视
-      type: view
-      url: http://5tv.com/weixin_supporters/mobi_show_p1
-      # sub_button:
-      #   -
-      #     type: click
-      #     name: 欢乐赢电视
-      #     key: get_tv
-      #   -
-      #     type: view
-      #     name: 没事玩游戏
-      #     url: http://104.237.155.77/weixinapi/game_random
+    # -
+    #   # name: 5爱活动
+    #   name: 欢乐赢电视
+    #   type: view
+    #   url: http://5tv.com/weixin_supporters/mobi_show_p1
+    #   # sub_button:
+    #   #   -
+    #   #     type: click
+    #   #     name: 欢乐赢电视
+    #   #     key: get_tv
+    #   #   -
+    #   #     type: view
+    #   #     name: 没事玩游戏
+    #   #     url: http://104.237.155.77/weixinapi/game_random
     -
       name: 5的地盘
       sub_button:
@@ -69,20 +69,20 @@ production:
           type: click
           name: 点我看更多
           key: click_for_more
-    -
-      # name: 5爱活动
-      name: 欢乐赢电视
-      type: view
-      url: http://5tv.com/weixin_supporters/mobi_show_p1
-      # sub_button:
-      #   -
-      #     type: click
-      #     name: 欢乐赢电视
-      #     key: get_tv
-      #   -
-      #     type: view
-      #     name: 没事玩游戏
-      #     url: http://104.237.155.77/weixinapi/game_random
+    # -
+    #   # name: 5爱活动
+    #   name: 欢乐赢电视
+    #   type: view
+    #   url: http://5tv.com/weixin_supporters/mobi_show_p1
+    #   # sub_button:
+    #   #   -
+    #   #     type: click
+    #   #     name: 欢乐赢电视
+    #   #     key: get_tv
+    #   #   -
+    #   #     type: view
+    #   #     name: 没事玩游戏
+    #   #     url: http://104.237.155.77/weixinapi/game_random
     -
       name: 5的地盘
       sub_button:
