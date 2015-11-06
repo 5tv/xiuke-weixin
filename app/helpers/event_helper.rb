@@ -14,8 +14,9 @@ module Weixin2
         when 'LOCATION'
           event_location(msg) 
         when 'SCAN'
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')
           event_scan(msg)
-          # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
           # event_scan(msg)
           # Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')       
         else
@@ -38,6 +39,7 @@ module Weixin2
       end
 
       def event_scan(msg)
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
         scene_id = msg.EventKey
         open_id = msg.FromUserName
         result = CACHE.read("/weixin_follow/#{scene_id}")
