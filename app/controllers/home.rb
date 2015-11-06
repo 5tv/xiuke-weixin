@@ -22,7 +22,13 @@ Weixin2::App.controllers :home do
       }
     }.to_json)
     obj = JSON.parse(qrcode_return)
-    obj['ticket']
+    {
+      error_message: "",
+      data: {
+        ticket: obj['ticket'],
+        scene_id: scene_id
+      }
+    }.to_json
   end
 
   get :qrcode_with_ticket do
