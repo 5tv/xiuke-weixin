@@ -1,6 +1,6 @@
 development: &default
-  appid: wx1532dfc6d2da9dcf
-  appsecret: 93ed294ed4b3dd8979683d710926e5fb
+  appid: wxdd2872a58cf3887f
+  appsecret: d4624c36b6795d1d99dcf0547af5443d
   token: xiukeshibukezhanshengde
   wx_account_id: gh_4c161956300a
   test_open_id: ou3rnjq7Tx-Nvii_XhUINYhCISYo

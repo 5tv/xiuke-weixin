@@ -19,6 +19,7 @@ else
   UPHOST =  'weixintest.5tv.com'
   LocalServer = '104.237.155.77'
 end
+REDIS_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/redis.yml')[RACK_ENV]
 APP_CACHE = ActiveSupport::Cache::RedisStore.new :host => REDIS_CONFIG['host'], :driver => :hiredis, :expires_in => 1.hour
 
 ##
