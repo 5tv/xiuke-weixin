@@ -41,7 +41,7 @@ Weixin2::App.controllers :home do
 
   get :test, map: '/test' do
     begin
-      p params 
+      p params
       test
     rescue=>e
       STDERR.puts e

@@ -70,8 +70,8 @@ Weixin2::App.helpers do
           {
             title: obj['title'],
             description: obj['description'],
-            url: "/serie/#{obj['serie_id']}/videos/show/#{video_id}?timepoint=#{timepoint}",
-            picurl: obj['cover']['x200']
+            url: "http://5tv.com/serie/#{obj['serie_id']}/videos/show/#{video_id}?timepoint=#{timepoint}",
+            picurl: obj['covers']['x200']
           }
         ]
       }
