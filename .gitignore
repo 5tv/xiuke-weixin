@@ -8,4 +8,3 @@ vendor/gems/*
 db/*.db
 .*.sw*
 config/menu_config.yml
-config/weixin_account.yml
