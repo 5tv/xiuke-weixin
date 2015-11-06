@@ -16,8 +16,9 @@ module Weixin2
         when 'SCAN'
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')       
         else
-          Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, msg.to_s)
+          # Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
+          # Weixin.text_msg(msg.ToUserName, msg.FromUserName, msg.to_s)
         end
       end
 
