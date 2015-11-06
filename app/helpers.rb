@@ -58,4 +58,24 @@ Weixin2::App.helpers do
     end
   end
 
+  def send_video_message(openid, video_id, timepoint)
+    video = Video.find(video_id)
+    message = {
+      touser: openid,
+      msgtype: 'news',
+      news: {
+        articles: [
+          {
+            title: video.title,
+            description: video.description,
+            url: "/serie/#{video.serie.id}/videos/show/#{video.id}?timepoint=#{timepoint}",
+            picurl: video.cover.x200.url
+          }
+        ]
+      }
+    }
+    message = JSON.parse(message)
+    client.message_custom.send(message)
+  end
+
 end
