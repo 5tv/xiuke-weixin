@@ -1,6 +1,9 @@
 development:
   host: 127.0.0.1
   password: MIIEogIBAAKCAQEA1OnGhZ4g0vlcufIQTQHheBjCDVCwJ7PYIj2aHOQsQc6k1Hag
+# production:
+#   host: 54.223.184.25
+#   password: wZMCQNECgYEA9HF+DvJOJWWuiT1I3nmjNrYce6cszUSzGHXL8jvO7eeD4Doa7+iX
 production:
-  host: 54.223.184.25
-  password: wZMCQNECgYEA9HF+DvJOJWWuiT1I3nmjNrYce6cszUSzGHXL8jvO7eeD4Doa7+iX
+  host: 127.0.0.1
+  password: MIIEogIBAAKCAQEA1OnGhZ4g0vlcufIQTQHheBjCDVCwJ7PYIj2aHOQsQc6k1Hag
