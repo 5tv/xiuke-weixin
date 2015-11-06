@@ -15,8 +15,8 @@ module Weixin2
           event_location(msg) 
         when 'SCAN'
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')
-          event_scan(msg)
-          Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
+          # event_scan(msg)
+          # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
           # event_scan(msg)
           # Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')       
         else
