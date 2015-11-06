@@ -27,8 +27,8 @@ Weixin2::App.controllers :home do
 
   get :send_video_message do
     openid = params[:openid]
-    video = Video.find(params[:video_id])
     timepoint = params[:timepoint]
+    
     message = {
       touser: openid,
       msgtype: 'news',

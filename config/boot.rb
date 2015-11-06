@@ -7,6 +7,8 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 require 'json'
 require 'rack-weixin'
+
+
 Bundler.require(:default, RACK_ENV)
 WX_ACCOUNT = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/weixin_account.yml')[RACK_ENV]
 MENU = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/menu_config.yml')[RACK_ENV]
@@ -21,7 +23,6 @@ else
 end
 REDIS_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/redis.yml')[RACK_ENV]
 CACHE = ActiveSupport::Cache::RedisStore.new :host => REDIS_CONFIG['host'], :driver => :hiredis, :expires_in => 1.hour
-
 ##
 # ## Enable devel logging
 #

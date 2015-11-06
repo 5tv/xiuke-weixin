@@ -26,7 +26,6 @@ gem 'padrino', '0.12.2'
 gem 'redis'
 gem 'hiredis'
 gem 'redis-activesupport'
-gem 'activerecord', '4.0.4'
 
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
