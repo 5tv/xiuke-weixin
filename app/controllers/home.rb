@@ -25,27 +25,6 @@ Weixin2::App.controllers :home do
     obj['ticket']
   end
 
-  get :send_video_message do
-    openid = params[:openid]
-    timepoint = params[:timepoint]
-    message = {
-      touser: openid,
-      msgtype: 'news',
-      news: {
-        articles: [
-          {
-            title: video.title,
-            description: video.description,
-            url: "/serie/#{video.serie.id}/videos/show/#{video.id}?timepoint=#{timepoint}",
-            picurl: video.cover.x200.url
-          }
-        ]
-      }
-    }
-    message = JSON.parse(message)
-    client.message_custom.send(message)
-  end
-
   get :qrcode_with_ticket do
   end
 

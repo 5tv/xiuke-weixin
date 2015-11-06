@@ -42,10 +42,7 @@ module Weixin2
         open_id = msg.FromUserName
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
-        video_info_url = "https://api.5tv.com/v1/videos/#{obj['video_id']}"
-        video = RestClient.get(video_info_url)
-        video_obj = JSON.parse(video)
-        send_video_message(open_id, video_obj['video_id'], video_obj['timepoint'])
+        send_video_message(open_id, obj['video_id'], obj['timepoint'])
       end
 
       def event_location(msg)

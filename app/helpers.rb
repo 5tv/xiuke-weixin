@@ -59,23 +59,25 @@ Weixin2::App.helpers do
   end
 
   def send_video_message(openid, video_id, timepoint)
-    video = Video.find(video_id)
+    video_info_url = "http://5tv.com/app/api/videos/video_info/#{obj['video_id']}"
+    video = RestClient.get(video_info_url)
+    obj = JSON.parse(video)
     message = {
       touser: openid,
       msgtype: 'news',
       news: {
         articles: [
           {
-            title: video.title,
-            description: video.description,
-            url: "/serie/#{video.serie.id}/videos/show/#{video.id}?timepoint=#{timepoint}",
-            picurl: video.cover.x200.url
+            title: obj['title'],
+            description: obj['description'],
+            url: "/serie/#{obj['serie_id']}/videos/show/#{video_id}?timepoint=#{timepoint}",
+            picurl: obj['cover']['x200']
           }
         ]
       }
-    }
+    }.to_json
     message = JSON.parse(message)
-    client.message_custom.send(message)
+    WEIXIN_CLIENT.message_custom.send(message)
   end
 
 end
