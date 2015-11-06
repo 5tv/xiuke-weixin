@@ -4,6 +4,9 @@ Weixin2::App.controllers :home do
     account_id = params[:account_id]
     video_id = params[:video_id]
     timepoint = params[:timepoint]
+    prng = Random.new
+    scene_id = prng.rand(100000000000)
+    access_token = WEIXIN_CLIENT.access_token
     
 
   end
