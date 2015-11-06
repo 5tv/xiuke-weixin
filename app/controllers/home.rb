@@ -28,7 +28,6 @@ Weixin2::App.controllers :home do
   get :send_video_message do
     openid = params[:openid]
     timepoint = params[:timepoint]
-    
     message = {
       touser: openid,
       msgtype: 'news',
@@ -48,7 +47,6 @@ Weixin2::App.controllers :home do
   end
 
   get :qrcode_with_ticket do
-    
   end
 
   get :index, map: '/' do
