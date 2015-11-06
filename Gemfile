@@ -22,6 +22,11 @@ gem 'rest-client'
 # Padrino Stable Gem
 gem 'padrino', '0.12.2'
 
+#redis
+gem 'redis'
+gem 'hiredis'
+gem 'redis-activesupport'
+
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 

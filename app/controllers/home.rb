@@ -1,4 +1,12 @@
 Weixin2::App.controllers :home do
+
+  get :weixin_follow do
+    account_id = params[:account_id]
+    video_id = params[:video_id]
+    timepoint = params[:timepoint]
+    
+
+  end
   
   get :index, map: '/' do
     if params[:echostr].present?

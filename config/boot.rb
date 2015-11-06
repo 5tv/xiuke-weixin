@@ -19,6 +19,7 @@ else
   UPHOST =  'weixintest.5tv.com'
   LocalServer = '104.237.155.77'
 end
+APP_CACHE = ActiveSupport::Cache::RedisStore.new :host => REDIS_CONFIG['host'], :driver => :hiredis, :expires_in => 1.hour
 
 ##
 # ## Enable devel logging
