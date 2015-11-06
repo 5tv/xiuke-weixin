@@ -1,15 +1,56 @@
 Weixin2::App.controllers :home do
-
   get :weixin_follow, map: '/weixin_follow' do
     account_id = params[:account_id]
     video_id = params[:video_id]
     timepoint = params[:timepoint]
     prng = Random.new
-    scene_id = prng.rand(100000000000)
+    scene_id = prng.rand(100_000_000_000)
+    WEIXIN_CLIENT.authenticate unless WEIXIN_CLIENT.access_token.present?
     access_token = WEIXIN_CLIENT.access_token
-    binding.pry
+    qrcode_url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=#{access_token}"
+    CACHE.write("/weixin_follow/#{scene_id}", {
+      account_id: account_id,
+      video_id: video_id,
+      timepoint: timepoint
+    }.to_json)
+    qrcode_return = RestClient.post(qrcode_url, {
+      action_name: 'QR_SCENE',
+      action_info: {
+        scene: {
+          scene_id: scene_id
+        }
+      }
+    }.to_json)
+    obj = JSON.parse(qrcode_return)
+    obj['ticket']
   end
-  
+
+  get :send_video_message do
+    openid = params[:openid]
+    video = Video.find(params[:video_id])
+    timepoint = params[:timepoint]
+    message = {
+      touser: openid,
+      msgtype: 'news',
+      news: {
+        articles: [
+          {
+            title: video.title,
+            description: video.description,
+            url: "/serie/#{video.serie.id}/videos/show/#{video.id}?timepoint=#{timepoint}",
+            picurl: video.cover.x200.url
+          }
+        ]
+      }
+    }
+    message = JSON.parse(message)
+    client.message_custom.send(message)
+  end
+
+  get :qrcode_with_ticket do
+    
+  end
+
   get :index, map: '/' do
     if params[:echostr].present?
       params[:echostr]

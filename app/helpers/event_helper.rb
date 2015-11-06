@@ -12,7 +12,9 @@ module Weixin2
         when 'VIEW'
           view(msg)
         when 'LOCATION'
-          event_location(msg)        
+          event_location(msg) 
+        when 'SCAN'
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')       
         else 
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
         end
