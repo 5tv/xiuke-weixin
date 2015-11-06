@@ -18,7 +18,7 @@ module Weixin2
           # event_scan(msg)
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
           
-          event_scan(msg)
+          # event_scan(msg)
           # Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')       
         else
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
@@ -41,11 +41,11 @@ module Weixin2
 
       def event_scan(msg)
         Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
-        scene_id = msg.EventKey
-        open_id = msg.FromUserName
-        result = CACHE.read("/weixin_follow/#{scene_id}")
-        obj = JSON.parse(result)
-        send_video_message(open_id, obj['video_id'], obj['timepoint'])
+        # scene_id = msg.EventKey
+        # open_id = msg.FromUserName
+        # result = CACHE.read("/weixin_follow/#{scene_id}")
+        # obj = JSON.parse(result)
+        # send_video_message(open_id, obj['video_id'], obj['timepoint'])
       end
 
       def send_video_message(openid, video_id, timepoint)
