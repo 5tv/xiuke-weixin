@@ -61,7 +61,7 @@ module Weixin2
               {
                 title: obj['title'],
                 description: obj['description'],
-                url: "http://5tv.com/serie/#{obj['serie_id']}/videos/show/#{video_id}?timepoint=#{timepoint}",
+                url: "http://5tv.com/serie/#{obj['serie_id']}/videos/show/#{video_id}?time=#{timepoint}",
                 picurl: obj['covers']['x200']
               }
             ]
