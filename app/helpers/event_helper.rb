@@ -49,7 +49,8 @@ module Weixin2
       end
 
       def send_video_message(openid, video_id, timepoint)
-        video_info_url = "http://5tv.com/app/api/videos/video_info/#{obj['video_id']}"
+        video_info_url = "http://5tv.com/app/api/videos/video_info/#{video_id}"
+        timepoint ||= 0
         video = RestClient.get(video_info_url)
         obj = JSON.parse(video)
         message = {
