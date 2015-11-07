@@ -28,6 +28,7 @@ module Weixin2
       def subscribe(msg)
         welcome = '欢迎您关注秀客网官方微信服务号。精彩内容尽在秀客。'
         Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
+        event_scan(msg)
       end
 
       def unsubscribe(msg)
@@ -43,14 +44,16 @@ module Weixin2
         open_id = msg.FromUserName
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
-        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "video_id: #{obj['video_id']} timepoint: #{obj['timepoint']}")
-        send_video_message(open_id, obj['video_id'], obj['timepoint'])
+        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "video_id: #{obj['video_id']} time: #{obj['time']}")
+        union_id = get_unionid(msg)
+        create_account(unionid)
+        send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
       end
 
-      def send_video_message(openid, video_id, timepoint)
+      def send_video_message(openid, video_id, time, type)
         video_info_url = "http://5tv.com/app/api/videos/video_info/#{video_id}"
-        timepoint ||= 0
+        time ||= 0
         video = RestClient.get(video_info_url)
         obj = JSON.parse(video)
         message = {
@@ -61,7 +64,7 @@ module Weixin2
               {
                 title: obj['title'],
                 description: obj['description'],
-                url: "http://5tv.com/serie/#{obj['serie_id']}/videos/show/#{video_id}?time=#{timepoint}",
+                url: "http://5tv.com/serie/#{obj['serie_id']}/videos/show/#{video_id}?time=#{time}",
                 picurl: obj['covers']['x200']
               }
             ]
@@ -69,6 +72,33 @@ module Weixin2
         }.to_json
         message = JSON.parse(message)
         WEIXIN_CLIENT.message_custom.send(message)
+      end
+
+      def create_account(unionid)
+
+      end
+
+      def get_unionid(msg)
+        if WEIXIN_CLIENT.expired? || WEIXIN_CLIENT.access_token.nil?
+          WEIXIN_CLIENT.authenticate
+          t = WEIXIN_CLIENT.access_token
+          weixin_openid = msg.FromUserName
+          union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
+          union_string = RestClient.get(union_link)
+          union_json = JSON.parse(union_string)
+          unionid = union_json['unionid']
+        else
+          t = WEIXIN_CLIENT.access_token
+          weixin_openid = msg.FromUserName
+          union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
+          union_string = RestClient.get(union_link)
+          union_json = JSON.parse(union_string)
+          unionid = union_json['unionid']
+        end
+      end
+
+      def follow_serie
+        
       end
 
       def event_location(msg)

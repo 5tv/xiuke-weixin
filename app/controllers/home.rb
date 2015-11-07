@@ -2,7 +2,8 @@ Weixin2::App.controllers :home do
   get :weixin_follow, map: '/weixin_follow' do
     account_id = params[:account_id]
     video_id = params[:video_id]
-    timepoint = params[:timepoint]
+    time = params[:time]
+    type = params[:type]
     prng = Random.new
     scene_id = prng.rand(100_000_000)
     WEIXIN_CLIENT.authenticate unless WEIXIN_CLIENT.access_token.present?
@@ -11,7 +12,8 @@ Weixin2::App.controllers :home do
     CACHE.write("/weixin_follow/#{scene_id}", {
       account_id: account_id,
       video_id: video_id,
-      timepoint: timepoint
+      time: time,
+      type: type
     }.to_json)
     qrcode_return = RestClient.post(qrcode_url, {
       action_name: 'QR_SCENE',
@@ -23,7 +25,7 @@ Weixin2::App.controllers :home do
     }.to_json)
     obj = JSON.parse(qrcode_return)
     {
-      error_message: "",
+      error_message: '',
       data: {
         ticket: obj['ticket'],
         scene_id: scene_id
