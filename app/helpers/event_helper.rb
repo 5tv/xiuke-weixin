@@ -41,11 +41,11 @@ module Weixin2
       def event_scan(msg)
         scene_id = msg.EventKey
         open_id = msg.FromUserName
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
         # result = CACHE.read("/weixin_follow/#{scene_id}")
         # obj = JSON.parse(result)
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "video_id: #{obj['video_id']} timepoint: #{obj['timepoint']}")
         # send_video_message(open_id, obj['video_id'], obj['timepoint'])
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
       end
 
       def send_video_message(openid, video_id, timepoint)
