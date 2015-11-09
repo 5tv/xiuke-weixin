@@ -45,9 +45,9 @@ module Weixin2
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
         user_info = get_userinfo(user_info)
-        account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{account_info.to_json}")
-        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info['unionid']}")
+        # account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
+        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{account_info.to_json}")
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info['unionid']}")
 
         # create_account(unionid)
         # send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
