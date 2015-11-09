@@ -79,7 +79,7 @@ module Weixin2
 
       
       def get_account_info(openid, nickname, headimgurl)
-        weixin_login_url = "api.5tv.com/v1/accounts/weixin_login?openid=#{openid}&nickname=#{nickname}&headimgurl=#{headimgurl}"
+        weixin_login_url = "http://api.5tv.com/v1/accounts/weixin_login?openid=#{openid}&nickname=#{nickname}&headimgurl=#{headimgurl}"
         result = RestClient.get(weixin_login_url)
         obj = JSON.parse(result)
       end
