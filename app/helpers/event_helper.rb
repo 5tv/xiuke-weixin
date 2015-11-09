@@ -45,20 +45,20 @@ module Weixin2
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
-        account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
-        follow_result = follow_serie(account_info['access_token'], obj['serie_id'])
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "obj: #{obj.to_json}, follow_result: #{follow_result.to_json}")
+        account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])   
+        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "obj: #{obj.to_json}, follow_result: #{follow_result.to_json}")
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
         # create_account(unionid)
-        # send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
+        send_video_message(open_id, obj['video_id'], obj['time'], obj['type'], account_info['access_token'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
       end
 
-      def send_video_message(openid, video_id, time, type)
+      def send_video_message(openid, video_id, time, type, access_token)
         video_info_url = "http://5tv.com/app/api/videos/video_info/#{video_id}"
         time ||= 0
         video = RestClient.get(video_info_url)
         obj = JSON.parse(video)
+        follow_result = follow_serie(access_token, obj['serie_id'])
         message = {
           touser: openid,
           msgtype: 'news',
@@ -74,7 +74,8 @@ module Weixin2
           }
         }.to_json
         message = JSON.parse(message)
-        WEIXIN_CLIENT.message_custom.send(message)
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "follow_result: #{follow_result.to_json}")
+        # WEIXIN_CLIENT.message_custom.send(message)
       end
 
       def get_account_info(openid, nickname, headimgurl)
