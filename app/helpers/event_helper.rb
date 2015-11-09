@@ -46,6 +46,8 @@ module Weixin2
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
         Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{user_info.to_json}")
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info['unionid']}")
+
         # create_account(unionid)
         # send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
