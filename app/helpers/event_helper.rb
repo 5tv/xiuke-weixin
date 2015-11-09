@@ -44,8 +44,8 @@ module Weixin2
         open_id = msg.FromUserName
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
-        union_id = get_userinfo(msg)
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{obj.to_json}")
+        user_info = get_userinfo(msg)
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{user_info.to_json}")
         # create_account(unionid)
         # send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
