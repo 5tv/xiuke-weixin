@@ -46,7 +46,7 @@ module Weixin2
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
         account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
-        follow_serie(account_info['access_token'], account_info['account_id'], obj['serie_id'])
+        follow_serie(account_info['access_token'], obj['serie_id'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{account_info.to_json}")
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
         # create_account(unionid)
@@ -102,14 +102,18 @@ module Weixin2
         end
       end
 
-      def follow_serie(token, account_id, serie_id)
-        follow_url = "http://api.5tv.com/v1/follows"
-        result = RestClient.post(URI.encode(weixin_login_url), {
-          token: token,
-          'follow[account_id]' => account_id,
-          'follow[followable_id]' => 156,
-          'follow[followable_type]' => 'Serie'
-        })
+      def follow_serie(token, serie_id)
+        follow_url = "https://api.5tv.com/v1/follows"
+        result = RestClient::Request.execute(
+          :url => follow_url,
+          :method => :post,
+          :verify_ssl => false,
+          :payload => {
+            token: token,
+            'follow[followable_id]' => serie_id,
+            'follow[followable_type]' => 'Serie'
+          }
+        )
       end
 
       def event_location(msg)
