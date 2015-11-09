@@ -28,7 +28,8 @@ Weixin2::App.controllers :home do
       error_message: '',
       data: {
         ticket: obj['ticket'],
-        scene_id: scene_id
+        scene_id: scene_id,
+        qrcode_url: "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=#{obj['ticket']}"
       }
     }.to_json
   end
