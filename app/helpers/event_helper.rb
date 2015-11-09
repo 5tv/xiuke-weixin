@@ -47,7 +47,7 @@ module Weixin2
         user_info = get_userinfo(msg)
         account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
         follow_result = follow_serie(account_info['access_token'], obj['serie_id'])
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "follow_result: #{follow_result.to_json}")
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "obj: #{obj.to_json}, follow_result: #{follow_result.to_json}")
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
         # create_account(unionid)
         # send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
