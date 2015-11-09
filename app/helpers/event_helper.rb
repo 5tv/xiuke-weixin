@@ -74,8 +74,8 @@ module Weixin2
           }
         }.to_json
         message = JSON.parse(message)
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "follow_result: #{follow_result.to_json}")
-        # WEIXIN_CLIENT.message_custom.send(message)
+        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "follow_result: #{follow_result.to_json}")
+        WEIXIN_CLIENT.message_custom.send(message)
       end
 
       def get_account_info(openid, nickname, headimgurl)
