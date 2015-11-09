@@ -49,7 +49,7 @@ module Weixin2
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "obj: #{obj.to_json}, follow_result: #{follow_result.to_json}")
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
         # create_account(unionid)
-        send_video_message(open_id, obj['video_id'], obj['time'], obj['type'], account_info['access_token'])
+        send_video_message(user_info['unionid'], obj['video_id'], obj['time'], obj['type'], account_info['access_token'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
       end
 
