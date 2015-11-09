@@ -44,10 +44,10 @@ module Weixin2
         open_id = msg.FromUserName
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
-        union_id = get_unionid(msg)
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{union_id}")
+        union_id = get_userinfo(msg)
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{obj.to_json}")
         # create_account(unionid)
-        send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
+        # send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
       end
 
@@ -78,22 +78,22 @@ module Weixin2
         
       end
 
-      def get_unionid(msg)
+      def get_userinfo(msg)
         if WEIXIN_CLIENT.expired? || WEIXIN_CLIENT.access_token.nil?
           WEIXIN_CLIENT.authenticate
           t = WEIXIN_CLIENT.access_token
           weixin_openid = msg.FromUserName
           union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
           union_string = RestClient.get(union_link)
-          union_json = JSON.parse(union_string)
-          unionid = union_json['unionid']
+          obj = JSON.parse(union_string)
+          # unionid = union_json['unionid']
         else
           t = WEIXIN_CLIENT.access_token
           weixin_openid = msg.FromUserName
           union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
           union_string = RestClient.get(union_link)
-          union_json = JSON.parse(union_string)
-          unionid = union_json['unionid']
+          obj = JSON.parse(union_string)
+          # unionid = union_json['unionid']
         end
       end
 
