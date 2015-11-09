@@ -44,7 +44,7 @@ module Weixin2
         open_id = msg.FromUserName
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
-        user_info = get_userinfo(user_info)
+        user_info = get_userinfo(msg)
         # account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{account_info.to_json}")
         Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
