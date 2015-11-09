@@ -47,7 +47,7 @@ module Weixin2
         user_info = get_userinfo(user_info)
         # account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{account_info.to_json}")
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info['unionid']}")
+        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
 
         # create_account(unionid)
         # send_video_message(open_id, obj['video_id'], obj['time'], obj['type'])
