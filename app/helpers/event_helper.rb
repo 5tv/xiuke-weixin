@@ -46,7 +46,7 @@ module Weixin2
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
         account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])
-        Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{account_info.to_json}")
+        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "userinfo: #{account_info.to_json}")
         # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
 
         # create_account(unionid)

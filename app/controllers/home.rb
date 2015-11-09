@@ -1,4 +1,8 @@
 Weixin2::App.controllers :home do
+  before do
+    headers 'Access-Control-Allow-Origin' => '*', 'Access-Control-Allow-Headers' => 'Content-Type, Content-Range, Content-Disposition, Content-Description'
+  end
+  
   get :weixin_follow, map: '/weixin_follow' do
     account_id = params[:account_id]
     video_id = params[:video_id]
