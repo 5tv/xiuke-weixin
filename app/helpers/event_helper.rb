@@ -41,7 +41,7 @@ module Weixin2
         result = CACHE.read("/weixin_follow/#{scene_id}")
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
-        account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])   
+        account_info = get_account_info(user_info['unionid'], open_id, user_info['nickname'], user_info['headimgurl'])   
         # create_account(unionid)
         send_video_message(open_id, obj['video_id'], obj['time'], account_info['access_token'])
       end
@@ -71,8 +71,8 @@ module Weixin2
         WEIXIN_CLIENT.message_custom.send(message)
       end
 
-      def get_account_info(openid, nickname, headimgurl)
-        weixin_login_url = "http://api.5tv.com/v1/accounts/weixin_login?openid=#{openid}&nickname=#{nickname}&headimgurl=#{headimgurl}"
+      def get_account_info(unionid, openid, nickname, headimgurl)
+        weixin_login_url = "http://api.5tv.com/v1/accounts/weixin_login?openid=#{openid}&nickname=#{nickname}&headimgurl=#{headimgurl}&openid_public=#{openid}"
         result = RestClient.get(URI.encode(weixin_login_url))
         obj = JSON.parse(result)
       end
