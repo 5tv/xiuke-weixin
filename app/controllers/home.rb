@@ -38,6 +38,13 @@ Weixin2::App.controllers :home do
     }.to_json
   end
 
+  get :send_video_message do
+    openid = params[:openid]
+    video_id = params[:video_id]
+    WEIXIN_CLIENT.authenticate
+    send_video_message(openid, video_id, 0, WEIXIN_CLIENT.access_token)
+  end
+
   get :qrcode_with_ticket do
   end
 
