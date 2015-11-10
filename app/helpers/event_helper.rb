@@ -14,11 +14,7 @@ module Weixin2
         when 'LOCATION'
           event_location(msg) 
         when 'SCAN'
-          # Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')
-          # event_scan(msg)
-          # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} msg: #{msg.EventKey}")
           event_scan(msg)
-          # Weixin.text_msg(msg.ToUserName, msg.FromUserName, '扫码啦！！我是天才')       
         else
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
         end
@@ -46,11 +42,8 @@ module Weixin2
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
         account_info = get_account_info(user_info['unionid'], user_info['nickname'], user_info['headimgurl'])   
-        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "obj: #{obj.to_json}, follow_result: #{follow_result.to_json}")
-        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "unionid: #{user_info.to_json}")
         # create_account(unionid)
         send_video_message(open_id, obj['video_id'], obj['time'], account_info['access_token'])
-        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "OpenId: #{msg.FromUserName} scene_id: #{msg.EventKey} ticket: #{msg.Ticket}")
       end
 
       def send_video_message(openid, video_id, time, access_token)

@@ -10,7 +10,7 @@ Weixin2::App.controllers :home do
     type = params[:type]
     prng = Random.new
     scene_id = prng.rand(100_000_000)
-    WEIXIN_CLIENT.authenticate unless WEIXIN_CLIENT.access_token.present?
+    WEIXIN_CLIENT.authenticate
     access_token = WEIXIN_CLIENT.access_token
     qrcode_url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=#{access_token}"
     CACHE.write("/weixin_follow/#{scene_id}", {
