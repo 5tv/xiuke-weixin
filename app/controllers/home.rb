@@ -43,6 +43,7 @@ Weixin2::App.controllers :home do
     video_id = params[:video_id]
     WEIXIN_CLIENT.authenticate
     send_video_message(openid, video_id, 0, WEIXIN_CLIENT.access_token)
+    { message: 'ok' }
   end
 
   get :qrcode_with_ticket do
