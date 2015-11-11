@@ -41,8 +41,7 @@ Weixin2::App.controllers :home do
   get :send_video_message, map: '/send_video_message' do
     openid = params[:openid]
     video_id = params[:video_id]
-    WEIXIN_CLIENT.authenticate
-    send_video_message(openid, video_id, 0, WEIXIN_CLIENT.access_token)
+    send_video_message(openid, video_id)
     { message: 'ok' }
   end
 
