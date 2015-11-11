@@ -38,7 +38,7 @@ Weixin2::App.controllers :home do
     }.to_json
   end
 
-  get :send_video_message do
+  get :send_video_message, '/send_video_message' do
     openid = params[:openid]
     video_id = params[:video_id]
     WEIXIN_CLIENT.authenticate
