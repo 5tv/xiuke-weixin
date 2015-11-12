@@ -41,7 +41,7 @@ Weixin2::App.controllers :home do
   get :send_message, map: '/send_message' do
     openid = params[:openid]
     text = params[:text]
-    {
+    message = {
       touser: openid,
       msgtype: "text",
       text:
