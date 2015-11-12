@@ -2,7 +2,7 @@ Weixin2::App.controllers :home do
   before do
     headers 'Access-Control-Allow-Origin' => '*', 'Access-Control-Allow-Headers' => 'Content-Type, Content-Range, Content-Disposition, Content-Description'
   end
-  
+
   get :weixin_follow, map: '/weixin_follow' do
     account_id = params[:account_id]
     video_id = params[:video_id]
@@ -15,9 +15,9 @@ Weixin2::App.controllers :home do
     qrcode_url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=#{access_token}"
     CACHE.write("/weixin_follow/#{scene_id}", {
       account_id: account_id,
-      video_id: video_id,
-      time: time,
-      type: type
+        video_id: video_id,
+        time: time,
+        type: type
     }.to_json)
     qrcode_return = RestClient.post(qrcode_url, {
       action_name: 'QR_SCENE',
@@ -36,6 +36,21 @@ Weixin2::App.controllers :home do
         qrcode_url: "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=#{obj['ticket']}"
       }
     }.to_json
+  end
+
+  get :send_message, map: '/send_message' do
+    openid = params[:openid]
+    text = params[:text]
+    {
+      touser: openid,
+      msgtype: "text",
+      text:
+      {
+        content: text
+      }
+    }.to_json
+    WEIXIN_CLIENT.message_custom.send(message)
+    { message: 'ok' }
   end
 
   get :send_video_message, map: '/send_video_message' do
@@ -109,6 +124,6 @@ Weixin2::App.controllers :home do
       halt 500, {message: e.to_s}.to_json
     end
   end
-  
+
 
 end
