@@ -43,14 +43,17 @@ Weixin2::App.controllers :home do
     text = params[:text]
     message = {
       touser: openid,
-      msgtype: "text",
+      msgtype: 'text',
       text:
       {
         content: text
       }
     }.to_json
-    WEIXIN_CLIENT.message_custom.send(message)
-    { message: 'ok' }
+    if WEIXIN_CLIENT.message_custom.send(message)
+      { message: 'ok' }
+    else
+      { message: 'error' }
+    end
   end
 
   get :send_video_message, map: '/send_video_message' do
