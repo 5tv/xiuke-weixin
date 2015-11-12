@@ -78,8 +78,11 @@ Weixin2::App.controllers :home do
       }
     }.to_json
     message = JSON.parse(message)
-    WEIXIN_CLIENT.message_custom.send(message)
+    if WEIXIN_CLIENT.message_custom.send(message)
     { message: 'ok' }
+    else
+      { message: 'ok' }
+    end
   end
 
   get :qrcode_with_ticket do
