@@ -48,11 +48,11 @@ Weixin2::App.controllers :home do
       {
         content: text
       }
-    }.to_json
+    }
     if WEIXIN_CLIENT.message_custom.send(message)
       { message: 'ok' }
     else
-      { message: 'error' }
+      { message: 'error}' }
     end
   end
 
