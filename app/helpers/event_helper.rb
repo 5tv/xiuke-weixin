@@ -12,7 +12,7 @@ module Weixin2
         when 'VIEW'
           view(msg)
         when 'LOCATION'
-          event_location(msg) 
+          event_location(msg)
         when 'SCAN'
           event_scan(msg)
         else
@@ -50,7 +50,7 @@ module Weixin2
         time ||= 0
         video = RestClient.get(video_info_url)
         obj = JSON.parse(video)
-        follow_result = follow_serie(access_token, obj['serie_id'])
+        follow_serie(access_token, obj['serie_id'])
         message = {
           touser: openid,
           msgtype: 'news',
@@ -73,7 +73,7 @@ module Weixin2
       def get_account_info(unionid, openid, nickname, headimgurl)
         weixin_login_url = "http://api.5tv.com/v1/accounts/weixin_login?openid=#{openid}&nickname=#{nickname}&headimgurl=#{headimgurl}&openid_public=#{openid}"
         result = RestClient.get(URI.encode(weixin_login_url))
-        obj = JSON.parse(result)
+        JSON.parse(result)
       end
 
       def get_userinfo(msg)
@@ -97,7 +97,7 @@ module Weixin2
 
       def follow_serie(token, serie_id)
         follow_url = "https://api.5tv.com/v1/follows"
-        result = RestClient::Request.execute(
+        RestClient::Request.execute(
           :url => follow_url,
           :method => :post,
           :verify_ssl => false,
