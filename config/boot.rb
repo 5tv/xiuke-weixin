@@ -21,7 +21,7 @@ if RACK_ENV == 'production'
 else
   UPHOST =  '54.223.162.137:9999'
   LocalServer = '104.237.155.77'
-  APISERVER '54.223.162.137'
+  APISERVER = '54.223.162.137'
 end
 
 REDIS_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/redis.yml')[RACK_ENV]
