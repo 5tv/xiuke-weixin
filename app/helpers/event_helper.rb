@@ -96,7 +96,11 @@ module Weixin2
       end
 
       def follow_serie(token, serie_id)
-        follow_url = "https://#{APISERVER}/v1/follows"
+        if RACK_ENV == 'production'
+          follow_url = "https://#{APISERVER}/v1/follows"
+        else
+          follow_url = "http://#{APISERVER}/v1/follows"
+        end
         result = RestClient::Request.execute(
           :url => follow_url,
           :method => :post,
@@ -105,6 +109,10 @@ module Weixin2
             token: token,
             'follow[followable_id]' => serie_id,
             'follow[followable_type]' => 'Serie'
+          },
+          :headers => {
+            'Accept' => 'application/vnd.5tv.v3+json',
+            'Authorization' => token
           }
         )
       end
