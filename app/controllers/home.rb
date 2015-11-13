@@ -58,6 +58,7 @@ Weixin2::App.controllers :home do
   end
 
   get :send_video_message, map: '/send_video_message' do
+    WEIXIN_CLIENT.authenticate
     openid = params[:openid]
     video_id = params[:video_id]
     video_info_url = "http://#{UPHOST}/app/api/videos/video_info/#{video_id}"
