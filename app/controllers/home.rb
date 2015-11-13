@@ -51,9 +51,9 @@ Weixin2::App.controllers :home do
       }
     }
     if WEIXIN_CLIENT.message_custom.send(message)
-      { message: 'ok' }
+      { message: 'ok' }.to_json
     else
-      { message: 'error}' }
+      { message: 'error}' }.to_json
     end
   end
 
@@ -80,9 +80,9 @@ Weixin2::App.controllers :home do
       }
     }
     if WEIXIN_CLIENT.message_custom.send(message)
-      { message: 'ok' }
+      { message: 'ok' }.to_json
     else
-      { message: 'error' }
+      { message: 'error' }.to_json
     end
   end
 
