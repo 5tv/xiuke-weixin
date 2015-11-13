@@ -17,9 +17,11 @@ WEIXIN_CLIENT = Weixin::Client.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret'])
 if RACK_ENV == 'production'
   UPHOST = '5tv.com'
   LocalServer = '106.187.35.209'
+  ApiServer = 'api.5tv.com'
 else
   UPHOST =  'weixintest.5tv.com'
   LocalServer = '104.237.155.77'
+  ApiServer '54.223.162.137'
 end
 REDIS_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/redis.yml')[RACK_ENV]
 CACHE = ActiveSupport::Cache::RedisStore.new :host => REDIS_CONFIG['host'], :driver => :hiredis, :expires_in => 1.hour
