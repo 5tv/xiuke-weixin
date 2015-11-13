@@ -78,8 +78,7 @@ Weixin2::App.controllers :home do
           }
         ]
       }
-    }.to_json
-    message = JSON.parse(message)
+    }
     if WEIXIN_CLIENT.message_custom.send(message)
       { message: 'ok' }
     else
