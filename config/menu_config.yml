@@ -30,7 +30,7 @@ development: &default
     #   #     name: 没事玩游戏
     #   #     url: http://104.237.155.77/weixinapi/game_random
     -
-      name: 5的地盘
+      name: APP下载
       sub_button:
         -
           type: view

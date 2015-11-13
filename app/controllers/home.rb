@@ -39,6 +39,7 @@ Weixin2::App.controllers :home do
   end
 
   get :send_message, map: '/send_message' do
+    WEIXIN_CLIENT.authenticate
     openid = params[:openid]
     text = params[:text]
     message = {
@@ -79,9 +80,9 @@ Weixin2::App.controllers :home do
     }.to_json
     message = JSON.parse(message)
     if WEIXIN_CLIENT.message_custom.send(message)
-    { message: 'ok' }
-    else
       { message: 'ok' }
+    else
+      { message: 'error' }
     end
   end
 
