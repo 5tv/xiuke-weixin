@@ -16,12 +16,12 @@ Weixin::Menu.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret']).add(MENU)
 WEIXIN_CLIENT = Weixin::Client.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret'])
 if RACK_ENV == 'production'
   UPHOST = '5tv.com'
-  LocalServer = '106.187.35.209'
+  WEIXIN_SERVER = '104.237.155.77'
   APISERVER = 'api.5tv.com'
 else
   UPHOST =  '54.223.162.137:9999'
-  LocalServer = '104.237.155.77'
-  APISERVER = '54.223.162.137'
+  WEIXIN_SERVER = '104.237.155.77'
+  APISERVER = '54.223.162.137:9999'
 end
 
 REDIS_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/redis.yml')[RACK_ENV]
