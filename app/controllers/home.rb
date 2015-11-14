@@ -86,7 +86,7 @@ Weixin2::App.controllers :home do
     end
   end
 
-  get :send_video_messages, map: '/send_video_message' do
+  get :send_video_messages, map: '/send_video_messages' do
     WEIXIN_CLIENT.authenticate
     openids = params[:openids]
     video_id = params[:video_id]
