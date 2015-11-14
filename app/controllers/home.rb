@@ -86,6 +86,33 @@ Weixin2::App.controllers :home do
     end
   end
 
+  get :send_video_messages, map: '/send_video_message' do
+    WEIXIN_CLIENT.authenticate
+    openids = params[:openids]
+    video_id = params[:video_id]
+    video_info_url = "http://#{UPHOST}/app/api/videos/video_info/#{video_id}"
+    time ||= 0
+    video = RestClient.get(video_info_url)
+    obj = JSON.parse(video)
+    openids.split(',').each do |openid|
+      message = {
+        touser: openid,
+        msgtype: 'news',
+        news: {
+          articles: [
+            {
+              title: obj['title'],
+              description: obj['description'],
+              url: "http://#{UPHOST}/serie/#{obj['serie_id']}/videos/show/#{video_id}?time=#{time}",
+              picurl: obj['covers']['x200']
+            }
+          ]
+        }
+      }
+      WEIXIN_CLIENT.message_custom.send(message)
+    end
+  end
+
   get :qrcode_with_ticket do
   end
 
