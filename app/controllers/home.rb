@@ -111,7 +111,7 @@ Weixin2::App.controllers :home do
       }
       WEIXIN_CLIENT.message_custom.send(message)
     end
-    { message: 'ok' }
+    { message: 'ok' }.to_json
   end
 
   get :qrcode_with_ticket do
