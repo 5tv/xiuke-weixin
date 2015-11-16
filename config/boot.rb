@@ -14,6 +14,7 @@ WX_ACCOUNT = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__)
 MENU = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/menu_config.yml')[RACK_ENV]
 Weixin::Menu.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret']).add(MENU)
 WEIXIN_CLIENT = Weixin::Client.new(WX_ACCOUNT['appid'],WX_ACCOUNT['appsecret'])
+WEIXIN_CLIENT.authenticate
 if RACK_ENV == 'production'
   UPHOST = '5tv.com'
   WEIXIN_SERVER = '104.237.155.77'
