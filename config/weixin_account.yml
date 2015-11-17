@@ -7,14 +7,14 @@ development: &default
 test:
   <<: *default
 
-production:
-  appid: wx09a8a54a7050bdf0
-  appsecret: d643e367f0449fe8391254bd2e439070
-  token: xiukeshibukezhanshengde
-  wx_account_id: gh_105842a55763
-
 #production:
-  #appid: wxdd2872a58cf3887f
-  #appsecret: d4624c36b6795d1d99dcf0547af5443d
+  #appid: wx09a8a54a7050bdf0
+  #appsecret: d643e367f0449fe8391254bd2e439070
   #token: xiukeshibukezhanshengde
-  #wx_account_id: gh_4c161956300a
+  #wx_account_id: gh_105842a55763
+
+production:
+  appid: wxdd2872a58cf3887f
+  appsecret: d4624c36b6795d1d99dcf0547af5443d
+  token: xiukeshibukezhanshengde
+  wx_account_id: gh_4c161956300a
