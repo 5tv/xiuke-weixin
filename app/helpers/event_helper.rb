@@ -14,8 +14,8 @@ module Weixin2
         when 'LOCATION'
           event_location(msg)
         when 'SCAN'
-          if @from_user_name = msg.FromUserName
-             Weixin.text_msg(msg.ToUserName, msg.FromUserName, '')
+          if @from_user_name == msg.FromUserName
+             Weixin.text_msg(msg.ToUserName, msg.FromUserName, '1')
           else
             @from_user_name = msg.FromUserName
             event_scan(msg)
