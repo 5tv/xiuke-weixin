@@ -77,22 +77,11 @@ module Weixin2
       end
 
       def get_userinfo(msg)
-        if WEIXIN_CLIENT.expired? || WEIXIN_CLIENT.access_token.nil?
-          WEIXIN_CLIENT.authenticate
-          t = WEIXIN_CLIENT.access_token if WEIXIN_CLIENT.expired?
-          weixin_openid = msg.FromUserName
-          union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
-          union_string = RestClient.get(union_link)
-          obj = JSON.parse(union_string)
-          # unionid = union_json['unionid']
-        else
-          t = WEIXIN_CLIENT.access_token
-          weixin_openid = msg.FromUserName
-          union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
-          union_string = RestClient.get(union_link)
-          obj = JSON.parse(union_string)
-          # unionid = union_json['unionid']
-        end
+        t = WEIXIN_CLIENT.get_access_token
+        weixin_openid = msg.FromUserName
+        union_link="https://api.weixin.qq.com/cgi-bin/user/info?access_token=#{t}&openid=#{weixin_openid}&lang=zh_CN"
+        union_string = RestClient.get(union_link)
+        obj = JSON.parse(union_string)
       end
 
       def follow_serie(token, serie_id)
