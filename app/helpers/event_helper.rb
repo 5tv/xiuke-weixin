@@ -12,11 +12,13 @@ module Weixin2
         when 'VIEW'
           view(msg)
         when 'LOCATION'
-          event_location(msg) 
+          event_location(msg)
         when 'SCAN'
           #welcome = 'lalalala'
           #Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
           event_scan(msg)
+          welcome = '新剧已推送'
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
         else
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
         end
