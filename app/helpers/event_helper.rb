@@ -14,7 +14,10 @@ module Weixin2
         when 'LOCATION'
           event_location(msg) 
         when 'SCAN'
-          event_scan(msg)
+          welcome = 'lalalala'
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
+
+          #event_scan(msg)
         else
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
         end
