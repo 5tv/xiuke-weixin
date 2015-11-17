@@ -12,19 +12,19 @@ module Weixin2
         when 'VIEW'
           view(msg)
         when 'LOCATION'
-          event_location(msg) 
+          event_location(msg)
         when 'SCAN'
           welcome = 'lalalala'
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
           #event_scan(msg)
         else
-          Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件, 扫描事件获取不到')
         end
       end
 
       private
       def subscribe(msg)
-        welcome = '欢迎您关注秀客网官方微信服务号。精彩内容尽在秀客。'
+        welcome = "欢迎您关注秀客网官方微信服务号。精彩内容尽在秀客。openid: #{msg.FromUserName}"
         Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
         event_scan(msg)
       end
