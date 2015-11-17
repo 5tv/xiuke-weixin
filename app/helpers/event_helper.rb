@@ -42,7 +42,7 @@ module Weixin2
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
         account_info = get_account_info(user_info['unionid'], open_id, user_info['nickname'], user_info['headimgurl'])
-        RestClient.get("http://#{WEIXIN_SERVER}/weixinapi/send_video_message?openid=#{open_id}&video_id=#{obj['video_id']}&time=#{obj['time']}")
+        #RestClient.get("http://#{WEIXIN_SERVER}/weixinapi/send_video_message?openid=#{open_id}&video_id=#{obj['video_id']}&time=#{obj['time']}")
         #send_video_message(open_id, obj['video_id'], obj['time'], account_info['access_token'])
       end
 
