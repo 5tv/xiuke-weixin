@@ -16,10 +16,7 @@ module Weixin2
         when 'SCAN'
           welcome = 'lalalala'
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
-          #event_scan(msg)i
-        when 'scan'
-          welcome = 'lalalala'
-          Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
+          #event_scan(msg)
         else
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
         end
@@ -168,3 +165,4 @@ module Weixin2
     helpers EventHelper
   end
 end
+          welcome = 'lalalala'
