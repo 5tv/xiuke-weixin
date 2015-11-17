@@ -16,8 +16,10 @@ module Weixin2
         when 'SCAN'
           welcome = 'lalalala'
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
-
-          #event_scan(msg)
+          #event_scan(msg)i
+        when 'scan'
+          welcome = 'lalalala'
+          Weixin.text_msg(msg.ToUserName, msg.FromUserName, welcome)
         else
           Weixin.text_msg(msg.ToUserName, msg.FromUserName, '未知事件')
         end
