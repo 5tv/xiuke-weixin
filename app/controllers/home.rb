@@ -10,8 +10,7 @@ Weixin2::App.controllers :home do
     type = params[:type]
     prng = Random.new
     scene_id = prng.rand(100_000_000)
-    WEIXIN_CLIENT.authenticate if WEIXIN_CLIENT.expired?
-    access_token = WEIXIN_CLIENT.access_token
+    access_token = WEIXIN_CLIENT.get_access_token
     qrcode_url = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=#{access_token}"
     CACHE.write("/weixin_follow/#{scene_id}", {
       account_id: account_id,
@@ -39,7 +38,7 @@ Weixin2::App.controllers :home do
   end
 
   get :send_message, map: '/send_message' do
-    WEIXIN_CLIENT.authenticate if WEIXIN_CLIENT.expired?
+    WEIXIN_CLIENT.get_access_token
     openid = params[:openid]
     text = params[:text]
     message = {
@@ -58,9 +57,10 @@ Weixin2::App.controllers :home do
   end
 
   get :send_video_message, map: '/send_video_message' do
-    WEIXIN_CLIENT.authenticate if WEIXIN_CLIENT.expired?
+    WEIXIN_CLIENT.get_access_token
     openid = params[:openid]
     video_id = params[:video_id]
+    time = params[:time]
     video_info_url = "http://#{UPHOST}/app/api/videos/video_info/#{video_id}"
     time ||= 0
     video = RestClient.get(video_info_url)
@@ -87,7 +87,7 @@ Weixin2::App.controllers :home do
   end
 
   get :send_video_messages, map: '/send_video_messages' do
-    WEIXIN_CLIENT.authenticate if WEIXIN_CLIENT.expired?
+    WEIXIN_CLIENT.get_access_token
     openids = params[:openids]
     video_id = params[:video_id]
     video_info_url = "http://#{UPHOST}/app/api/videos/video_info/#{video_id}"
