@@ -60,6 +60,7 @@ Weixin2::App.controllers :home do
     WEIXIN_CLIENT.get_access_token
     openid = params[:openid]
     video_id = params[:video_id]
+    time = params[:time]
     video_info_url = "http://#{UPHOST}/app/api/videos/video_info/#{video_id}"
     time ||= 0
     video = RestClient.get(video_info_url)

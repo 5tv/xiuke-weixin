@@ -42,7 +42,8 @@ module Weixin2
         obj = JSON.parse(result)
         user_info = get_userinfo(msg)
         account_info = get_account_info(user_info['unionid'], open_id, user_info['nickname'], user_info['headimgurl'])
-        send_video_message(open_id, obj['video_id'], obj['time'], account_info['access_token'])
+        RestClient.get("http://#{WEIXIN_SERVER}/weixinapi/send_video_message?openid=#{open_id}&video_id=#{obj['video_id']}&time=#{obj['time']}")
+        #send_video_message(open_id, obj['video_id'], obj['time'], account_info['access_token'])
       end
 
       def send_video_message(openid, video_id, time, access_token)
@@ -50,7 +51,7 @@ module Weixin2
         time ||= 0
         video = RestClient.get(video_info_url)
         obj = JSON.parse(video)
-        follow_result = follow_serie(access_token, obj['serie_id'])
+        follow_serie(access_token, obj['serie_id'])
         message = {
           touser: openid,
           msgtype: 'news',
@@ -66,7 +67,6 @@ module Weixin2
           }
         }.to_json
         message = JSON.parse(message)
-        # Weixin.text_msg(msg.ToUserName, msg.FromUserName, "follow_result: #{follow_result.to_json}")
         WEIXIN_CLIENT.message_custom.send(message)
       end
 
