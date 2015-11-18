@@ -27,7 +27,7 @@ end
 
 REDIS_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__) + '/redis.yml')[RACK_ENV]
 CACHE = ActiveSupport::Cache::RedisStore.new :host => REDIS_CONFIG['host'], :driver => :hiredis, :expires_in => 1.hour
-
+CACHE_1M = ActiveSupport::Cache::RedisStore.new :host => REDIS_CONFIG['host'], :driver => :hiredis, :expires_in => 1.minute
 ##
 # ## Enable devel logging
 #

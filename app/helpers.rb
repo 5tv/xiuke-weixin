@@ -37,4 +37,8 @@ Weixin2::App.helpers do
   def text_deliver(msg,text)
     Weixin.text_msg(msg.ToUserName, msg.FromUserName, text)
   end
+
+  def a
+   a ||= 1
+  end
 end

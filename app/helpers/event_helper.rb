@@ -14,10 +14,11 @@ module Weixin2
         when 'LOCATION'
           event_location(msg)
         when 'SCAN'
-          if @from_user_name == msg.FromUserName
-             Weixin.text_msg(msg.ToUserName, msg.FromUserName, '1')
+          openid = CACHE_1M.read('/scan_openid')
+          if openid == msg.FromUserName
+             Weixin.text_msg(msg.ToUserName, msg.FromUserName, '')
           else
-            @from_user_name = msg.FromUserName
+            CACHE_1M.write('/scan_openid', msg.FromUserName)
             event_scan(msg)
           end
         else
