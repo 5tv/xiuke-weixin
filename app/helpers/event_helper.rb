@@ -15,8 +15,7 @@ module Weixin2
           event_location(msg)
         when 'SCAN'
           openid = CACHE_1M.read('/scan_openid')
-          if openid == msg.FromUserName
-          else
+          unless openid == msg.FromUserName
             CACHE_1M.write('/scan_openid', msg.FromUserName)
             event_scan(msg)
           end
